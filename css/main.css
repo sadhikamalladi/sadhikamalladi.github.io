@@ -1,0 +1,123 @@
+/* gregorygundersen.com
+ * 2020-02-16
+ */
+
+body {
+	color: rgba(0, 0, 0, 0.8);
+	font-family: -apple-system, Helvetica, arial, sans-serif;
+	font-size: 15px;
+	line-height: 1.5em;
+	margin: 0;
+}
+a {
+	color: rgba(0, 0, 0, 0.8);
+	text-decoration: underline;
+}
+a:hover {
+	color: rgba(0, 0, 0, 0.8);
+	text-decoration: none;
+}
+h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+.mono {
+	font-family: courier;
+}
+#index {
+	max-width: 600px;
+	margin: 70px auto 100px auto;
+}
+#about {
+	margin-top: 40px;
+}
+#contact {
+	font-family: courier;
+	margin: 0;
+	padding: 0;
+}
+ul#links {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 15px 0 20px 0;
+	font-weight: bold;
+}
+ul#links li {
+	font-family: -apple-system, helvetica, arial, sans-serif;
+	display: inline;
+	margin-right: 20px;
+}
+ul#links li a {
+	color: rgba(0, 0, 0, 0.8);
+	text-decoration: none;
+}
+ul#links li a:hover {
+	text-decoration: underline;
+}
+.section ul {
+	padding-left: 15px;
+}
+#photo img {
+	width: 100%;
+}
+#photo #caption {
+	color: rgba(0, 0, 0, 0.5);
+	margin-top: 0;
+	font-size: 12px;
+	float: right;
+}
+.nav,
+#papers {
+	max-width: 700px;
+	margin: 0 auto 100px auto;
+}
+#papers {
+	margin-top: 40px;
+}
+#papers h1 {
+	margin-top: 60px;
+	margin-bottom: 40px;
+}
+#papers .paper-row {
+	margin-bottom: 30px;
+}
+#papers .paper-title,
+#papers .paper-authors,
+#papers .paper-venue,
+#papers .paper-links {
+	margin: 0;
+}
+#papers .pub-links {
+	list-style-type: none;
+	padding-left: 0;
+	margin-top: 0;
+}
+.nav {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.nav a {
+	color: rgba(0, 0, 0, 0.6);
+	text-decoration: none;
+	border-bottom: none;
+	font-size: 12px;
+}
+.nav a:hover {
+  	font-weight: bold;
+}
+.nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+.nav ul li {
+	display: inline;
+	margin-right: 10px;
+}
+
+/* Mobile.
+ */
+@media screen and (max-width: 600px) {
+	body {
+		margin: 0 7px 0 7px !important;
+	}
+}
