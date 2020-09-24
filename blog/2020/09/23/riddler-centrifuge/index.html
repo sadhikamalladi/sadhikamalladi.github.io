@@ -88,7 +88,7 @@ MathJax.Hub.Config({
 
 <h2 id="riddler-classic-word-games">Riddler Classic: Word Games</h2>
 
-<p>So this problem actually took less time than the express did (probably because of my own tortuous extension of that problem). We have some <img src="https://s0.wp.com/latex.php?latex=n&amp;bg=ffffff&amp;fg=333333&amp;s=0" alt="n" /> words in a vocabulary, and we’re playing a game where try to guess what word was used this round. Every time we guess, the person tells us if the true word is alphabetically before or after our guess (or, if our guess is right).</p>
+<p>So this problem actually took less time than the express did (probably because of my own tortuous extension of that problem). We have some $n$ words in a vocabulary, and we’re playing a game where try to guess what word was used this round. Every time we guess, the person tells us if the true word is alphabetically before or after our guess (or, if our guess is right).</p>
 
 <p>If you’ve studied computer science algorithms, this is a very familiar form. We’re traversing a binary tree with $n$ nodes, and each time we get feedback on our guess, we choose which child of the current node to explore. If you’re familiar with this structure, then you’re probably inclined to shout out $\log n$ search time, just like I did! But this is actually wrong.</p>
 
