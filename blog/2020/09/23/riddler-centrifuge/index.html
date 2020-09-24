@@ -1,0 +1,113 @@
+<html>
+<head>
+    <title>Riddlers (09/18)</title>
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content='Gregory Gundersen is a PhD candidate at Princeton.'>
+    <meta name='keywords' content='riddler, number theory'>
+    <meta name='author' content='Gregory Gundersen'>
+
+    <link href='/css/blog.css' rel='stylesheet'/>
+    <link href='/css/trac.css' rel='stylesheet'/>
+    <link href='/css/markdown.css' rel='stylesheet'/>
+
+    <script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  jax: ['input/TeX', 'output/HTML-CSS'],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    extensions: ['color.js']
+  },
+  messageStyle: 'none',
+  'HTML-CSS': { preferredFont: 'TeX', availableFonts: ['STIX','TeX'] }
+});
+</script>
+
+<script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML' type='text/javascript'></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/blog'>Blog</a></li>
+	<li><a href='/papers'>Papers</a></li>
+    </ul>
+</div>
+
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>Riddlers (09/18)</h1>
+            <h4>Centrifuges and Word Games</h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>23 September 2020</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+        <p><a href="https://href.li/?https://fivethirtyeight.com/features/can-you-break-a-very-expensive-centrifuge/">This week’s Riddler puzzles</a> could both be solved analytically! I was really excited that I didn’t have to rely on an absurd number of Python simulations to check the solutions. I also discovered a deeper connection to number theory in a general form for one of the problems that I’m pretty excited about.</p>
+
+<h2 id="riddler-express-centrifuge-problem">Riddler Express: Centrifuge Problem</h2>
+
+<p>You have to place 7 tubes in a 12-slot centrifuge such that the centrifuge is balanced (i.e., the center of mass is at its the center of the circle). You can assume the tubes all have the same dynamics.</p>
+
+<p>At first, this problem seems impossible. After all, there is some notion of symmetry here, and 7 just doesn’t feel like a number amenable to any kind of symmetry. However, the key is to recognize that the superposition of balanced sets is also a balanced set.</p>
+
+<p>In other words, if you need to place 4 tubes in the centrifuge, you can immediately see that placing them all 3 spots apart will result in a balanced configuration. But if you don’t see it immediately, you can also see that if you can place 2 tubes in a balanced configuration (by choosing diametrically opposing slots), then you can just repeat that process and you’ve put 4 tubes in a balanced configuration! The one caveat, of course, is that when you combine placements like this, you have to be sure that none of the slots are used twice (i.e., across two different placements).</p>
+
+<p>Now, we can decompose 7 tubes like this and solve the problem! If we use 7 = 3 + 2 + 2, it’s pretty easy to see how we can superimpose these 3 balanced configurations to create one balanced configuration over the 12 slots.</p>
+
+<h3 id="extra-credit">Extra Credit</h3>
+
+<p>OK, of course I did the extra credit (nerd alert!). If we want to see how many configurations there are to put these 7 tubes in, we can just look at it as a combinatorial problem. We first assume some rotational symmetry (i.e., putting two tubes in slots 12 and 6 is the same as putting them in 1 and 7 and so on) so that we’re actually looking at the unique number of configurations.</p>
+
+<p>Now, let’s place the 3 tubes (spaced 4 slots apart) however we want. There’s really only 1 choice to place the 3 tubes in a balanced configuration (can’t be decomposed into 2 + 1, since we can’t place 1 in a balanced configuration). So, all we’re choosing is where to put the two 2-tube arrangements.</p>
+
+<p>Remember the one constraint we have in this decomposition view is that we can’t have two decomposed configurations using the same slot. The 3 tube configuration actually rules out 6 slots for us to put tubes in, since the 2-tube requires the tubes to be diametrically opposed. So there’s 6 remaining slots.</p>
+
+<p>Choosing where to put 1 of the 2 tubes automatically determines where the other one will go (there is only one balanced configuration for 2 tubes). So, we have $\binom 32$ choices for how to arrange the 7 tubes.</p>
+
+<h3 id="extra-extra-credit">Extra Extra Credit</h3>
+
+<p>The more interesting question is: for what values of $n$ and $k$ can we actually place $k$ balanced tubes in an $n$-slot centrifuge? We had this natural instinct about $k=7$ and $n=12$ that ended up being wrong. It turns out that you can think about this problem in the complex plane. Any time I see evenly spaced points around a circle, my instinct is to think about the roots of unity on the unit circle. These form evenly spaced points along the circumference, each of which maps to a slot on the centrifuge.</p>
+
+<p>It turns out there’s a conjecture in number theory as follows: If $n\geq 2$ and $k\in [1,n]$, then you can find $k$ distinct $n$th roots of unity that sum to 0 if and only if $k$ and $n-k$ are nonnegative linear combinations (i.e., all coefficients are nonnegative) of prime factors of $n$.</p>
+
+<p>The <strong>distinct</strong> caveat is important here. Basically, we need to make sure we don’t try to put more than one test tube into a slot. It turns out this conjectore was <a href="http://www.kurims.kyoto-u.ac.jp/EMIS/journals/INTEGERS/papers/k31/k31.pdf">proved</a>. Oddly enough, it was proved in the setting of this centrifuge problem!</p>
+
+<p>If you don’t want to think of the roots of unity, then you can also equivalently express this condition as $k$ and $n-k$ must be expressed as a sum of prime divisors of $n$.</p>
+
+<h2 id="riddler-classic-word-games">Riddler Classic: Word Games</h2>
+
+<p>So this problem actually took less time than the express did (probably because of my own tortuous extension of that problem). We have some <img src="https://s0.wp.com/latex.php?latex=n&amp;bg=ffffff&amp;fg=333333&amp;s=0" alt="n" /> words in a vocabulary, and we’re playing a game where try to guess what word was used this round. Every time we guess, the person tells us if the true word is alphabetically before or after our guess (or, if our guess is right).</p>
+
+<p>If you’ve studied computer science algorithms, this is a very familiar form. We’re traversing a binary tree with $n$ nodes, and each time we get feedback on our guess, we choose which child of the current node to explore. If you’re familiar with this structure, then you’re probably inclined to shout out $\log n$ search time, just like I did! But this is actually wrong.</p>
+
+<p>It takes $\log n$ time to traverse a binary search tree when you <strong>don’t know if your query is in the tree</strong>. In this problem, we actually know that the word the game gave us is in the tree. Conditioning on this success can give us a slightly better answer. It’s better when you look at it asymptotically, but I guess for the $n$ given in the problem, it’s a pretty incremental improvement.</p>
+
+<p>Given that we know a path exists from the root to the node containing the correct word, we actually only care about what the path length is (i.e., how many queries we need to make). We can compute the expectation of the path length. The main assumption made here is that the game has a uniform distribution over all possible words in the vocabulary.</p>
+
+<p>There is only one path from the root to any single node in the tree, a property of the construction of a binary search tree. Let $T(n)$ be the expected number of queries needed to find the correct word. Then,</p>
+
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable rowspacing="0.24999999999999992em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>T</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mn>1</mn><mo>+</mo><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mrow><mo fence="true">⌊</mo><mrow><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mi>k</mi></mrow><mo fence="true">⌋</mo></mrow></mrow><mi>n</mi></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned} T(n) &amp;= 1 + \dfrac{\sum_{k=1}^n \left \lfloor{\log_2 k}\right \rfloor}{n} \end{aligned}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.4800020000000003em;vertical-align:-0.990001em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4900010000000004em;"><span style="top:-3.4900010000000004em;"><span class="pstrut" style="height:3.494002em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.990001em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4900010000000004em;"><span style="top:-3.4900010000000004em;"><span class="pstrut" style="height:3.494002em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.494002em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897100000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">⌊</span><span class="mord"><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span><span class="mclose delimcenter" style="top:0em;">⌋</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.990001em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p>The 1 here accounts for the initial iteration. I’m not going to compute this out for a general $n$, since it’s not necessary for the problem. But you can do it if you split the cases into whether or not the correct node is in the middle of the tree or is a leaf node.</p>
+
+    </div>
+    <div id='bibliography'>
+        <div class='wrap'>
+            <ol class="bibliography"></ol>
+        </div>
+    </div>
+</div>
+</body>
+</html>
