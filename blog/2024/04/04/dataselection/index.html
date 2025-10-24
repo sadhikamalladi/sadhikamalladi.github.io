@@ -1,0 +1,318 @@
+<html>
+<head>
+    <title>Using LESS Data to Tune Models</title>
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content='Sadhika Malladi is a PhD candidate at Princeton.'>
+    <meta name='keywords' content='research'>
+    <meta name='author' content='Sadhika Malladi'>
+
+    <link href='/~smalladi/css/blog.css' rel='stylesheet'/>
+    <link href='/~smalladi/css/trac.css' rel='stylesheet'/>
+    <link href='/~smalladi/css/markdown.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="/~smalladi/assets/katex.min.js">
+
+    <script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  jax: ['input/TeX', 'output/HTML-CSS'],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    extensions: ['color.js']
+  },
+  messageStyle: 'none',
+  'HTML-CSS': { preferredFont: 'TeX', availableFonts: ['STIX','TeX'] }
+});
+</script>
+
+<script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML' type='text/javascript'></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='/~smalladi/index.html'>Home</a></li>
+	<li><a href='/~smalladi/papers/index.html'>Papers</a></li>
+	<li><a href='/~smalladi/service/index.html'>Teaching and Service</a></li>
+	    <li><a href='/~smalladi/blog/index.html'>Research Blog</a></li>
+        	<li><a href='/~smalladi/recruitment/index.html'>Student Recruitment</a></li>
+    </ul>
+</div>
+
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>Using LESS Data to Tune Models</h1>
+            <h4>Data Selection in the Era of LLMs</h4>
+            <div class='bylines'>
+	      <div class='author'>
+		<h3>Written by</h3>
+		<p> <a href="https://xiamengzhou.github.io">Mengzhou Xia</a> and Sadhika Malladi </p>
+	      </div>
+                <div class='byline'>
+		  <h3>Published</h3>
+                    <p>April 04 2024</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+        <p><strong>TL;DR</strong>: We describe how data selection for modern-day LLMs differs from prior settings and how our algorithm, <strong>LESS</strong>, effectively selects relevant data to cultivate specific capabilities in models during instruction tuning.</p>
+
+<p><strong>Paper:</strong> <a href="https://arxiv.org/abs/2402.04333">https://arxiv.org/abs/2402.04333</a></p>
+
+<p><strong>Code:</strong> <a href="https://github.com/princeton-nlp/LESS/tree/main">https://github.com/princeton-nlp/LESS/</a></p>
+
+<hr />
+
+<p>This post will take the following structure:</p>
+
+<ul>
+  <li>We introduce the motivation for data selection and describe how the criteria for “good” data depends heavily on the <a href="#motivation">setting</a>. One can either try to identify <strong>representative</strong> datapoints for the in-domain setting or <strong>relevant</strong> ones for the transfer setting.</li>
+  <li>Our algorithm, <a href="#less">LESS</a>, effectively selects relevant data to induce capabilities in the instruction tuning setting. LESS identifies 5% of the dataset that induces stronger performance than training on the full dataset.</li>
+  <li>We conduct an <a href="#prior-work">in-depth analysis of prior works</a> on data selection for various settings and provide insights into their technical details, strengths, and limitations.</li>
+  <li>We conclude by identifying trends in data selection in the era of LLMs.</li>
+</ul>
+
+<hr />
+
+<h1 id="motivation">Motivation</h1>
+
+<p>The training dataset is a crucial design choice when building a machine learning model. Dataset choice can drive the <strong>capabilities</strong> of the resulting model in various ways (see, for example, <a href="https://arxiv.org/abs/2308.12950">CodeLLaMA</a>, and <a href="https://arxiv.org/abs/2402.03300">DeepSeek-Math</a>). Also, training models can be expensive, and the cost usually scales with the size of the dataset, so dataset selection offers one way to improve <strong>efficiency</strong> and reduce cost<strong>.</strong></p>
+
+<center>
+<div class="figure">
+<img src="/~smalladi/assets/dataselection_img/settings.svg" alt="Cartoon of coreset selection vs transfer data selection." style="
+ margin-left: auto;
+ margin-right: auto;
+ width: 95%;" />
+ <br />
+ 
+ <div class="caption">
+ <span class="caption-label"><i>Coreset selection</i> selects data such that the selected subset represents the full dataset. 
+<br /><i>Transfer data selection</i> selects the subset that is closest to the target data points. </span>
+</div></div></center>
+
+<p>We distinguish two settings for data selection: in-domain data selection and transfer data selection. In the former, the selected data is drawn from the same distribution as the evaluation data<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> , whereas in the latter, evaluation is performed on different data.</p>
+
+<ul>
+  <li><em>In-domain data selection</em> aims to identify the most <strong>representative</strong> subset of data, often referred to as a coreset (<a href="https://arxiv.org/abs/1708.00489">Sener &amp; Severese 2018</a>), from a large in-domain training dataset. The selection criteria include representativeness, coverage, correctness, and more. We talk more about this setting latter.</li>
+  <li><em>Transfer data selection</em> seeks to choose the most <strong>relevant</strong> data from a broad training pool that closely align with the target examples. The selection criterion focuses on relevancy.</li>
+</ul>
+
+<p>Our work focuses on <strong>transfer data selection for</strong> <strong>instruction tuning</strong>. Instruction tuning has proven to be a highly effective way to quickly adapt language models to follow human instructions. Depending on the data used, models can be tuned to be general-purpose instruction followers (e.g., <a href="https://crfm.stanford.edu/2023/03/13/alpaca.html">Alpaca</a>, <a href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a>, <a href="https://arxiv.org/abs/2310.16944">Zephyr</a>) or solve more structured tasks per human instructions (i.e., <strong>targeted instruction tuning</strong>). Our work focuses on selecting data for the latter case, where models are tuned to perform particular types of reasoning (e.g., using a passage to answer a question). In this case, the data selection problem can be understood as bootstrapping a few examples to identify relevant data to solve a task.</p>
+
+<h1 id="less">Selecting LESS Datapoints for Targeted Instruction Tuning</h1>
+
+<p>The targeted instruction tuning setting poses the following research question:</p>
+
+<center>
+<i>Given just a few handwritten examples of a query type and a particular pre-trained model, how can we identify the most relevant data to train on out of a large pool of available instruction tuning data?</i>
+</center>
+
+<p>Several data selection strategies have been developed for pre-training, such as continued training on domain-specific data (<a href="https://arxiv.org/abs/2004.10964">Gururangan et al., 2020</a>) and using n-gram statistics to identify relevant data (<a href="https://arxiv.org/abs/2302.03169">Xie et al., 2023</a>). However, the instruction tuning setting is unique in that using all of the available data can hurt the development of specific capabilities (<a href="https://arxiv.org/abs/2306.04751">Wang et al., 2023</a>), and one wants to somehow account for the properties of the pre-trained model when selecting data. So, we avoid using heuristic definitions of useful data and instead frame data selection as a rigorous optimization problem. As we describe in the next section, LESS selects training data to minimize the loss on the target data (i.e., the few handwritten validation examples).
+Check out our paper <a href="https://arxiv.org/abs/2402.04333" target="_blank">here</a> and play with the code on <a href="https://github.com/princeton-nlp/LESS" target="_blank">GitHub</a>!</p>
+
+<h2 id="conceptual-approach">Conceptual Approach</h2>
+
+<p>Suppose we have a handwritten validation example $z$ and a huge dataset of candidate training points $\mathcal{D}$. At the heart of any transfer data selection algorithm is the same question: how does training on some point $x\in\mathcal{D}$ affect the model’s performance on $z$? We explicitly formulate this by approximating how the validation loss $\ell(z;\theta)$ changes when we take one training step (i.e., update the model from $\theta_t$ to $\theta_{t+1}$) on a candidate datapoint $x$:</p>
+
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">ℓ</mi><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">;</mo><msub><mi>θ</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>≈</mo><mi mathvariant="normal">ℓ</mi><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">;</mo><msub><mi>θ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">⟨</mo><mi mathvariant="normal">∇</mi><mi mathvariant="normal">ℓ</mi><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">;</mo><msub><mi>θ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo separator="true">,</mo><msub><mi>θ</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>θ</mi><mi>t</mi></msub><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">
+\ell(z;\theta_{t+1}) \approx \ell(z;\theta_t) + \langle \nabla \ell (z;\theta_t), \theta_{t+1} - \theta_t \rangle
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">ℓ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">ℓ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⟨</span><span class="mord">∇</span><span class="mord">ℓ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">⟩</span></span></span></span></span></p>
+
+<p>Assume that we were training with SGD with step size $\eta_t$, we can further derive the following formulation:</p>
+
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">ℓ</mi><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">;</mo><msub><mi>θ</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>−</mo><mi mathvariant="normal">ℓ</mi><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">;</mo><msub><mi>θ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo>≈</mo><msub><mi>η</mi><mi>t</mi></msub><mo stretchy="false">⟨</mo><mi mathvariant="normal">∇</mi><mi mathvariant="normal">ℓ</mi><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">;</mo><msub><mi>θ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo separator="true">,</mo><mi mathvariant="normal">∇</mi><mi mathvariant="normal">ℓ</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><msub><mi>θ</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">
+\ell(z;\theta_{t+1}) -\ell(z;\theta_t) \approx \eta_t\langle \nabla \ell (z;\theta_t), \nabla \ell (x;\theta_t)\rangle
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">ℓ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">ℓ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">⟨</span><span class="mord">∇</span><span class="mord">ℓ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∇</span><span class="mord">ℓ</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">⟩</span></span></span></span></span></p>
+
+<p>We can see that selecting $x$ to maximize $\langle \nabla \ell (z;\theta_t), \nabla \ell (x;\theta_t)\rangle$ will maximally reduce the validation loss on $z$. The method was initially proposed and employed in TracIn (<a href="https://arxiv.org/abs/2002.08484">Pruthi et al., 2020</a>) to gain insights into how training examples influence the model’s predictions. The formulation is also very suitable for transfer learning, because there is no need to assume any relationship between $x$ and $z$. But, there are a couple of modifications required to make it work for our setting (see  <a href="https://arxiv.org/abs/2402.04333" target="_blank">our paper</a> for details):</p>
+
+<ol>
+  <li><strong>Adam:</strong> LLMs are generally tuned using Adam, which has a more complicated update formula involving the moving averages of the gradient moments. We can plug in that update, which we denote as $\Gamma(x;\theta_t)$ instead of $\nabla\ell(x;\theta_t)$. See the paper for details on the Adam formulation and the resulting technical complications.</li>
+  <li><strong>Multi-Epoch:</strong> We usually train our models over several epochs, which means each candidate $x\in\mathcal{D}$ would be seen several times over the course of training. We would want our estimate of the influence of $x$ to take this into account, but we want to avoid the computational cost of training on the entire candidate dataset for several epochs. Instead, we approximate how the model would adapt to seeing the same data by performing a warmup training period on a randomly selected 5% of the data and aggregating the influence over the whole run. See the paper for how we aggregate influences over multiple epochs.</li>
+  <li><strong>Variable-Length Instruction Data</strong>: Instruction tuning sequences have differing lengths. Experiments in our paper showed that shorter sequences exhibit much larger norms, so the inner product $\langle \nabla \ell (z;\theta_t), \nabla \ell (x;\theta_t)\rangle$ is much larger for shorter $x$. We therefore decide to instead use the cosine similarity instead of the inner product when measuring the influence. This is not a failure of the formulation described above (which indeed is quite simple); instead, it indicates that we ought to perform data selection for <em>individual tokens</em> instead of <em>entire sequences</em>. However, measuring the gradient of every token in the sequence is prohibitively expensive with today’s methods, so we stick to sequence selection and leave a token-level formulation to future work.</li>
+</ol>
+
+<p>Altogether, once we make the necessary modifications, we arrive at the following formula for computing the influence of a training datapoint $x$ on a validation point $z$.</p>
+
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Influence</mtext><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mover accent="true"><mi>η</mi><mo>ˉ</mo></mover><mi>i</mi></msub><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi mathvariant="normal">∇</mi><mi mathvariant="normal">ℓ</mi><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">;</mo><msub><mi>θ</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo separator="true">,</mo><mi mathvariant="normal">Γ</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">;</mo><msub><mi>θ</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+\textrm{Influence}(x, z) = \sum_{i=1}^N \bar{\eta}_i \cos (\nabla \ell(z;\theta_i), \Gamma(x; \theta_i))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord textrm">Influence</span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;"><span class="mord">ˉ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord">∇</span><span class="mord">ℓ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">Γ</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+
+<p>where $\Gamma(x; \theta_i)$ is the Adam update mentioned above, $N$ is the number of epochs during warmup training (see next section), $\bar\eta_i$ is the average learning rate in the $i$th epoch, and $\theta_i$ is the model after the $i$th epoch. The above formula makes it clear that we need to handle model gradient vectors, which can be very large, and we need to aggregate influences over several model checkpoints. In the next section, we describe how we compute this formula efficiently.</p>
+
+<h2 id="selecting-less-data">Selecting LESS Data</h2>
+
+<center>
+<img src="/~smalladi/assets/dataselection_img/method2-cropped.svg" alt="The four major steps of LESS" style="
+ margin-left: auto;
+ margin-right: auto;
+ width: 80%;" />
+ <br /><br /><br />
+ <div class="caption">
+ <span class="caption-label">An overview of the four steps of our algorithm, <a href="https://arxiv.org/abs/2402.04333" target="_blank">LESS</a>. </span>
+</div></center>
+
+<p><strong>LESS</strong> consists of four major steps to make influence estimation feasible and scalable:</p>
+
+<ol>
+  <li><strong>Warmup LoRA training:</strong>  We train the model with a warmup phase with a random subset of data and checkpoint the model $\theta_i$ and optimizer update $\Gamma$ over $N$ epochs. We choose to train with LoRA to operate on gradients in a much smaller space (i.e., ~100M parameters for a 7B model).</li>
+  <li><strong>Compute gradient features:</strong> We acquire low-rank <strong>Adam</strong> gradients by further projecting the LoRA gradients down to a smaller dimension $d$ (i.e., 8192 in our experiments).<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup></li>
+  <li><strong>Select data:</strong> Given a few instances from target tasks, we first acquire their compressed gradients. We then calculate the influence $\mathrm{Inf}$ and pick the examples with the highest scores.<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup></li>
+  <li><strong>Train models:</strong> We train models on the selected data, using either full-parameter fine-tuning or efficient fine-tuning approaches like LoRA.</li>
+</ol>
+
+<p>Note that the first and second steps are computed once per candidate training set and can be stored as a <strong>gradient datastore</strong>. The datastore can be reused to quickly select data for different validation tasks. Moreover, the model used to select data in steps 1-3 can be different from the model trained in step 4, and we call this setting LESS-T, where “T” stands for transfer.</p>
+
+<h2 id="results">Results</h2>
+
+<p><strong>Training on 5% selected data often outperforms training on the full dataset</strong></p>
+
+<p>We construct our dataset pool to be a combination of subsets <a href="https://huggingface.co/datasets/SirNeural/flan_v2">FLAN V2</a>, COT, <a href="https://huggingface.co/datasets/OpenAssistant/oasst1">Open Assistant 1</a>, and <a href="https://www.notion.so/Using-LESS-data-to-tune-models-data-selection-in-the-era-of-LLMs-f85c2d946baa45afa974b5f021200b38?pvs=21">Dolly</a> datasets. On Mistral-7B and Llama-2-13B, we find that the selected 5% of the data outperforms using the full dataset. Additionally, we find that the data selected with Llama-2-7B is also effective for instruction-tuning Llama-2-13B and Mistral-7B (LESS-T).</p>
+
+<center>
+<div class="figure">
+<img src="/~smalladi/assets/dataselection_img/llama_bar.svg" alt="Bar chart of results" style="
+ margin-left: auto;
+ margin-right: auto;
+ width: 48%;" />
+ <img src="/~smalladi/assets/dataselection_img/mistral_bar.svg" alt="Bar chart of results" style="
+ margin-left: auto;
+ margin-right: auto;
+ width: 48%;" />
+ <br />
+ 
+ <div class="caption">
+ <span class="caption-label">Training on just 5% of the data, selected by our algorithm <a href="https://arxiv.org/abs/2402.04333" target="_blank">LESS</a>, outperforms training on the full dataset. </span>
+</div></div></center>
+
+<center>
+<div class="figure">
+<img src="/~smalladi/assets/dataselection_img/table.png" alt="Table of results" style="
+ margin-left: auto;
+ margin-right: auto;
+ width: 100%;" />
+ <br />
+ 
+ <div class="caption">
+ <span class="caption-label">In-depth results of using <a href="https://arxiv.org/abs/2402.04333" target="_blank">LESS</a> on three benchmarks.</span> <br />LESS-T indicates that we used LLaMA-2-7B to select the data for training the model.
+</div></div></center>
+
+<p><strong>LESS outperforms the baselines</strong></p>
+
+<p>We compare our approach to several baselines with different <strong>relevancy</strong> criteria.</p>
+
+<ul>
+  <li>Random: random selection</li>
+  <li>BM25: computes lexical overlap as a relevancy score and selects the examples with the highest scores</li>
+  <li>DSIR (Xie et al., 2023): weight candidate training data with n-gram features, and resample data based on the weights</li>
+  <li>RDS: uses model’s hidden representations as features and selects the examples with the highest similarity scores</li>
+</ul>
+
+<p>We surprisingly find that LESS is the only approach that consistently outperforms random selection. Other approaches, unfortunately, either provide minimal improvement over random selection (BM25), or underperform random selection. In the next section, we provide qualitative examples to have an in-depth understanding of why other approaches fail.</p>
+
+<center>
+<div class="figure">
+<img src="/~smalladi/assets/dataselection_img/baselines.jpeg" alt="LESS outperforms baselines (bar chart)" style="
+ margin-left: auto;
+ margin-right: auto;
+ width: 60%;" />
+ <br />
+ 
+ <div class="caption">
+ <span class="caption-label">LESS outperforms all baselines.</span>
+</div></div></center>
+
+<p><strong>LESS selects examples with similar underlying task structures</strong></p>
+
+<p>We provide top selected examples by BM25, RDS and LESS for a TydiQA example. The TydiQA example presents a paragraph and a question in Bengali, and the goal is to locate an answer to the question within the given paragraph. BM25 and RDS select examples in Bengali, but these examples are related to a different task. In contrast, LESS selects a question-answering example written in English, which is more relevant to the target task.</p>
+
+<p>This pattern holds true for the top examples selected for other questions. Upon further investigation, we discovered that the top examples selected by BM25 and RDS are predominantly in Bengali, whereas LESS consistently chooses examples in English that are specifically related to question answering. This observation suggests that LESS prioritizes examples that share a similar reasoning process, while the other approaches place too much emphasis on superficial cues such as language or topic, rather than the underlying task structure.</p>
+
+<center>
+<div class="figure">
+<img src="/~smalladi/assets/dataselection_img/qualitative.png" alt="Qualitative analysis of examples chosen by LESS." style="
+ margin-left: auto;
+ margin-right: auto;
+ width: 100%;" />
+ <br />
+ 
+ <div class="caption">
+ <span class="caption-label">Qualitative analysis of selected data.</span> <br /> LESS circumvents surface-form cues to instead select examples with similar reasoning types as the validation data.
+</div></div></center>
+
+<p><strong>More computation on data selection enhances performance</strong></p>
+
+<p>Our ablations in the  <a href="https://arxiv.org/abs/2402.04333" target="_blank">paper</a> show that spending more computation in any of the steps of LESS can improve the performance of the method at the cost of additional runtime. For example, using a longer warmup phase in step 1, increasing the projected dimension in step 2, and aggregating the influence estimate over more model checkpoints can all improve performance at the cost of runtime and/or memory. We report results in a setting where the data selection cost is reasonable: selecting and training on the data requires less time than training on all available data. However, our results show that training on LESS data can even <strong>improve</strong> performance, so it may be worthwhile to invest more resources into the selection stage.</p>
+
+<h1 id="prior-work">Past Works on Data Selection</h1>
+
+<p>In this section, we discuss many related works in-domain data selection and transfer data selection.<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup> Our goal is to briefly cover the many broad intuitions that can inform different data selection algorithms.</p>
+
+<h2 id="in-domain-data-selection">In-Domain Data Selection</h2>
+
+<p>As we mentioned before, the goal of data selection depends heavily on the setting. When ample labeled in-domain data is available (e.g., image classification in vision is an obvious case, pre-training data selection is also one), the goal is to identify the most <strong>representative</strong> subset of data, so much of the past work has sought to define the notion of “representative” datapoints. <a href="https://arxiv.org/abs/1708.00489">Sener &amp; Severese 2018</a> explicitly defines this problem to be a core-set problem (<a href="https://arxiv.org/abs/1703.06476">Bachem et al., 2017</a>, <a href="https://www.jmlr.org/papers/v20/18-167.html">Tremblay et al., 2019</a>), which aims to choose a set of datapoints such that each data point is close to at least one selected data point. Subsequent research has linked specific attributes of datapoints, such as being “easy to forget” (<a href="https://arxiv.org/abs/1812.05159">Toneva et al., 2019</a>), exhibiting “large prediction error” (<a href="https://arxiv.org/abs/2107.07075">Paul et al., 2021</a>), being “hard to memorize” (<a href="https://arxiv.org/pdf/2008.03703.pdf">Feldman et al., 2020</a>), being “redundant in clustering” (<a href="https://arxiv.org/abs/1901.11409">Birodkar et al., 2019</a>) and having “uncertain predictions” (<a href="https://arxiv.org/abs/1905.12737">Chitta et al., 2019</a>) with their representativeness and importance. <a href="https://arxiv.org/abs/2206.14486">Sorscher et al., 2022</a> consolidate these attributes under the category of hard examples, proposing that these instances are the most critical for effective training. One can also use gradient-based features (<a href="https://arxiv.org/abs/1906.01827">Mirzasoleiman et al., 2020</a>, <a href="https://proceedings.mlr.press/v119/wang20p.html">Wang et al., 2020</a>, <a href="https://arxiv.org/abs/2103.00123">Killamsetty et al., 2021</a>) for data selection. This naturally lends itself to a more general meta-learning formulation, which we discuss more below.</p>
+
+<h3 id="pre-training">Pre-Training</h3>
+
+<p>In recent years, the pre-training and fine-tuning paradigm has proven to be an effective way to build large-scale foundation models. Unlike models trained with curated task-specific datasets like CIFAR or ImageNet, these models are trained with massive Internet-scraped data consisting of trillions of tokens or images. These two settings differ in two ways: (1) quality: web-scale datasets are generally heterogeneous in quality; and (2) scale: data selection has strong implications on efficiency in the foundational model era. We consider general pre-training data selection to be a form of in-domain data selection, as it aims to choose data that covers all potential use cases.</p>
+
+<p><strong>Algorithmic Filtering:</strong> Early in 2019, researchers have found that excluding high-perplexity examples from CommonCrawl could significantly boost training efficiency, since such examples are often nonsensical or of low quality (<a href="https://arxiv.org/abs/1911.00359">Wenzek et al., 2019</a>, <a href="https://arxiv.org/abs/2309.04564">Marion et al., 2023</a>). More sophisticated processing identified high-quality data by filtering domains and URLs, ensuring diversity, and removing redundancy (e.g., via <a href="https://www.notion.so/Using-LESS-data-to-tune-models-data-selection-in-the-era-of-LLMs-f85c2d946baa45afa974b5f021200b38?pvs=21">MinHashLSH</a> or semantic deduplication (<a href="https://arxiv.org/abs/2303.09540">Abbas et al., 2023</a>)). Many popular datasets were constructed in this way, including C4 (<a href="https://arxiv.org/abs/1910.10683">Raffel et al., 2021</a>), RefinedWeb (<a href="https://arxiv.org/abs/2306.01116">Penedo et al., 2023</a>), SlimPajama (<a href="https://arxiv.org/abs/2309.10818">Shen et al., 2023</a>), and more. Similar efforts have been explored for pre-training VIT models (<a href="https://arxiv.org/abs/2401.04578">Abbas et al., 2024</a>).</p>
+
+<p><strong>LLM-Aided Filtering</strong>: An extreme form of algorithmic filtering is to explicitly prompt LLMs to generate data satisfying certain properties. The approach’s efficacy is clearest in the Phi-series models (<a href="https://arxiv.org/abs/2306.11644">Gunasekar et al., 2023</a>, <a href="https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/">Javaheripi et al., 2024</a>), which achieved strong performance on math and coding benchmarks with only 1.3B model parameters. While the Phi-series models focus on generating textbook-style data, other recent work has shown that rephrasing pre-training data to mimic the stylistic and informational density of Wikipedia articles markedly enhances the data’s cost-effectiveness (<a href="https://arxiv.org/abs/2401.16380">Maini et al., 2024</a>). Aside from generating data, LLMs can also be used to judge the quality of data. Recent works such as QuRating (<a href="https://arxiv.org/abs/2402.09739">Wettig et al., 2024</a>) and Ask-LLM (<a href="https://arxiv.org/abs/2402.09668">Sachdeva et al., 2024</a>)  aim to exploit capable language models to directly provide quality scores to data instances, offering a metric for evaluating their potential impact on model training.</p>
+
+<p><strong>Meta-Learning Formulation</strong>: Instead of relying on human notions of quality, one can also phrase in-domain and transfer data selection as meta-learning problems (<a href="https://arxiv.org/abs/2011.00050">Nguyen et al., 2020</a>). The outer loop selects data for models in the inner loop to train on. Meta-learning approaches have traditionally been very computationally expensive. Recent work, dubbed datamodels (<a href="https://arxiv.org/abs/2202.00622">Ilyas et al., 2022</a>), seeks to make this bi-level optimization problem more tractable by directly training a model to predict the test performance that would result from excluding or including a particular datapoint. Subsequent work (<a href="https://arxiv.org/abs/2303.14186">Park et al., 2023</a>) made this approach computationally efficient, and recently, <a href="https://arxiv.org/abs/2401.12926">Engstrom et al., 2024</a> used this approach to score pre-training examples based on how they affect performance on a target set of examples. Our work, LESS, can be interpreted as one such meta-learning formulation for selecting data in the instruction tuning setting.</p>
+
+<h3 id="instruction-tuning">Instruction Tuning</h3>
+
+<p>Instruction tuning stands as a pivotal process in unlocking capabilities of pre-trained base models by further training the models to make them follow human instructions. Many works have assembled massive instruction tuning datasets. Some early datasets are human annotated (e.g., Open Assistant and Dolly), though recent trends mostly use completions from GPT models (e.g., Orca, ShardGPT, UltraChat etc.). The queries in these datasets cover a broad spectrum of topics, and could be as diverse as pre-training datasets. They are mostly used to build general-purpose chatbots.</p>
+
+<p>Recently, a lot of works have shown that high-quality data is essential for instruction tuning. The pioneering work LIMA (<a href="https://arxiv.org/abs/2305.11206">Zhou et al., 2023</a>) illustrates that a mere 1,000 meticulously selected high-quality human-curated examples could lead to marked performance improvements. Numerous studies have thus endeavored to automate the data selection pipeline, including strategies for choosing examples based on their naturalness (<a href="https://arxiv.org/abs/2307.06290">Cao et al., 2023</a>), employing GPT-4 for quality scoring (<a href="https://arxiv.org/abs/2307.08701">Chen et al., 2023</a>), enhancing data diversity (<a href="https://arxiv.org/abs/2311.14736">Bukharin et al., 2023</a>, <a href="https://arxiv.org/abs/2312.15685">Liu et al., 2023</a>),  and ensuring broad coverage (<a href="https://arxiv.org/abs/2311.15653">Du et al., 2023</a>). Additionally, some research has explored the benefits of prioritizing longer examples (<a href="https://arxiv.org/abs/2402.04833">Zhao et al., 2024</a>), but it remains uncertain whether if this simply aligns on a surface level with the tendency of GPT to favor longer outputs (<a href="https://arxiv.org/abs/2306.04751">Wang et al., 2023</a>).</p>
+
+<h2 id="transfer-data-selection">Transfer Data Selection</h2>
+
+<p>Transfer data selection and in-domain data selection differ in purpose. While in-domain data selection aims to cover the properties of the entire dataset, transfer data selection focuses on enhancing the performance of a specific subdistribution of data. This shift in focus leads to a change in the selection criterion from representativeness to <strong>relevance</strong>.</p>
+
+<p>In transfer data selection, the goal is to identify the most relevant data points from a large pool of available data. This approach is particularly useful for building domain-specific models or improving the performance of specific tasks or queries. To achieve this, a subset of target data is typically required to serve as an anchor for the data selection process. Previous works in this area include the study by <a href="https://aclanthology.org/2020.acl-main.740/">Gururangan et al. (2020)</a>, which demonstrates the effectiveness of continued training on topic-specific pre-training data to improve performance on domain-specific downstream tasks. Another notable work is by <a href="https://arxiv.org/abs/2302.03169">Xie et al. (2023)</a>, which introduces a data reweighting approach based on the n-gram similarity between the source data and the target distribution. While these two works focus on aligning data with surface form cues (i.e., topic and ngram matching), LESS selects data that matches the underlying task or reasoning type.</p>
+
+<h1 id="conclusion-and-future-directions">Conclusion and Future Directions</h1>
+
+<p>Data plays a crucial role in determining the capabilities of trained deep models. In the in-domain setting, data selection aims to select a small yet representative dataset. Reducing the dataset size directly reduces the time required for training, which can be extremely useful when pre-training LLMs. On other hand, in the transfer setting, one seeks to solve tasks that do not have much data associated with them, and this requires <em>filtering</em> the dataset to identify a <strong>relevant</strong> subset to train on. Our method, LESS, selects data in the transfer setting to perform targeted instruction tuning, and it identifies the most relevant 5% of the dataset that can induce better performance than training on the full dataset. More broadly, we see data as being an important area of study for improving LLMs. Spending more compute on data selection (or, more broadly, data generation) in many different settings has proven to be very valuable, though one has to ensure that the cost of selection does not skyrocket. Data selection can also go beyond improving or preserving performance to attribute particular model behaviors to the training data. For example, a recent follow-up to LESS (<a href="https://arxiv.org/abs/2404.01099">He et al., 2024</a>) identifies seemingly benign data that somehow breaks the safety of models during fine-tuning. We’re excited to see where data selection goes next!</p>
+
+<p><strong>Acknowledgements</strong>: LESS is co-authored with Suchin Gururangan, Sanjeev Arora, and Danqi Chen. We thank (in alphabetical order) Dan Friedman, Tianyu Gao, Lucy He, Austin Wang, Alex Wettig, and Howard Yen for their helpful feedback on this post!</p>
+
+<hr />
+<p><strong>Footnotes</strong>:</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>In some cases, the distribution of the training data may not match that of the evaluation data. However, the training data could still serve as a good approximation and correlates with the performance on the evaluation data. For instance, the pre-training loss measured on a held-out dataset, typically provides a reliable indication of the model’s performance on downstream tasks. Therefore, we still consider pre-training data selection as in-domain data selection. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>We use the efficient random projection implementation used in TRAK (<a href="https://arxiv.org/abs/2303.14186">Park et al., 2023</a>). See their amazing codebase <a href="https://github.com/MadryLab/trak">here</a>! <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>According to the derivation, the training gradients are normalized using the Adam update rule, and the validation gradients for the target instances are used as-is. Both are compressed via random projection. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p>A <a href="https://arxiv.org/abs/2402.16827">recent survey paper</a> provides a more comprehensive and formal treatment of data selection methods in the context of language models. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    <div id='bibliography'>
+        <div class='wrap'>
+            <ol class="bibliography"></ol>
+        </div>
+    </div>
+</div>
+</body>
+</html>

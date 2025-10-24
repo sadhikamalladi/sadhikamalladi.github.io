@@ -1,1 +1,1 @@
-Sitemap: http://gregorygundersen.com/sitemap.xml
+Sitemap: cs.princeton.edu/~smalladi/sitemap.xml

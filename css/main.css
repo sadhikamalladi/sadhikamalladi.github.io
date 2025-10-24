@@ -12,6 +12,7 @@ body {
 a {
 	color: rgba(0, 0, 0, 0.8);
 	text-decoration: underline;
+	target: "_blank"
 }
 a:hover {
 	color: rgba(0, 0, 0, 0.8);
@@ -21,15 +22,32 @@ h1 {
 	font-size: 24px;
 	margin-bottom: 20px;
 }
+h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
 .mono {
 	font-family: courier;
 }
 #index {
-	max-width: 600px;
+	max-width: 700px;
 	margin: 70px auto 100px auto;
 }
+
+#research-areas {
+	max-width: 700px;
+	margin: 40px auto 100px auto;
+}
+.personal-photo {
+    float: right;
+    margin: 50px 0 0 20px;
+    max-width: 40%;
+    height: auto;
+}
+
 #about {
-	margin-top: 40px;
+    margin-top: 40px;
+    overflow: visible;
 }
 #contact {
 	font-family: courier;
@@ -101,9 +119,6 @@ ul#links li a:hover {
 	text-decoration: none;
 	border-bottom: none;
 	font-size: 12px;
-}
-.nav a:hover {
-  	font-weight: bold;
 }
 .nav ul {
 	list-style-type: none;
