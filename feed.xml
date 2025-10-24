@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/" rel="alternate" type="text/html" /><updated>2025-10-24T11:55:12-07:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/feed.xml</id><entry><title type="html">The Hidden Infinity in Preference Learning</title><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2024/07/09/dpo-infinity/" rel="alternate" type="text/html" title="The Hidden Infinity in Preference Learning" /><published>2024-07-09T00:00:00-07:00</published><updated>2024-07-09T00:00:00-07:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2024/07/09/dpo-infinity</id><content type="html" xml:base="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2024/07/09/dpo-infinity/"><![CDATA[<p><strong>TL;DR</strong>: I demonstrate from first principles how offline preference learning algorithms (e.g., <a href="https://arxiv.org/abs/2405.14734">SimPO</a>) can benefit from length normalization, especially when training on model-annotated preference data. The derivation also lends insight into a subtle but important challenge in training LMs: infinite strings.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/" rel="alternate" type="text/html" /><updated>2025-10-24T12:05:26-07:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/feed.xml</id><entry><title type="html">The Hidden Infinity in Preference Learning</title><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2024/07/09/dpo-infinity/" rel="alternate" type="text/html" title="The Hidden Infinity in Preference Learning" /><published>2024-07-09T00:00:00-07:00</published><updated>2024-07-09T00:00:00-07:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2024/07/09/dpo-infinity</id><content type="html" xml:base="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2024/07/09/dpo-infinity/"><![CDATA[<p><strong>TL;DR</strong>: I demonstrate from first principles how offline preference learning algorithms (e.g., <a href="https://arxiv.org/abs/2405.14734">SimPO</a>) can benefit from length normalization, especially when training on model-annotated preference data. The derivation also lends insight into a subtle but important challenge in training LMs: infinite strings.</p>
 
 <hr />
 
@@ -80,7 +80,7 @@
       <p>OK, to be fair, there are papers that now train models to predict several tokens into the future (<a href="https://arxiv.org/abs/2404.19737">Gloeckle et al., 2024</a>), but I would argue this is just a patch over the underlying problem. Similarly, there are papers that allow a model to access and train on its own generations (e.g., STaR, <a href="https://arxiv.org/abs/2203.14465">Zelikman et al., 2022</a>), but I’m not fully convinced that this closes the gap between training and inference. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name>Sadhika Malladi</name></author><summary type="html"><![CDATA[TL;DR: I demonstrate from first principles how offline preference learning algorithms (e.g., SimPO) can benefit from length normalization, especially when training on model-annotated preference data. The derivation also lends insight into a subtle but important challenge in training LMs: infinite strings.]]></summary></entry><entry><title type="html">Using LESS Data to Tune Models</title><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2024/04/04/dataselection/" rel="alternate" type="text/html" title="Using LESS Data to Tune Models" /><published>2024-04-04T00:00:00-07:00</published><updated>2024-04-04T00:00:00-07:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2024/04/04/dataselection</id><content type="html" xml:base="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2024/04/04/dataselection/"><![CDATA[<p><strong>TL;DR</strong>: We describe how data selection for modern-day LLMs differs from prior settings and how our algorithm, <strong>LESS</strong>, effectively selects relevant data to cultivate specific capabilities in models during instruction tuning.</p>
+</div>]]></content><author><name>Sadhika Malladi</name></author><summary type="html"><![CDATA[TL;DR: I demonstrate from first principles how offline preference learning algorithms (e.g., SimPO) can benefit from length normalization, especially when training on model-annotated preference data. The derivation also lends insight into a subtle but important challenge in training LMs: infinite strings.]]></summary></entry><entry><title type="html">Using LESS Data to Tune Models</title><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2024/04/04/dataselection/" rel="alternate" type="text/html" title="Using LESS Data to Tune Models" /><published>2024-04-04T00:00:00-07:00</published><updated>2024-04-04T00:00:00-07:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2024/04/04/dataselection</id><content type="html" xml:base="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2024/04/04/dataselection/"><![CDATA[<p><strong>TL;DR</strong>: We describe how data selection for modern-day LLMs differs from prior settings and how our algorithm, <strong>LESS</strong>, effectively selects relevant data to cultivate specific capabilities in models during instruction tuning.</p>
 
 <p><strong>Paper:</strong> <a href="https://arxiv.org/abs/2402.04333">https://arxiv.org/abs/2402.04333</a></p>
 
@@ -105,7 +105,7 @@
 
 <center>
 <div class="figure">
-<img src="sadhikamalladi.github.io//assets/dataselection_img/settings.svg" alt="Cartoon of coreset selection vs transfer data selection." style="
+<img src="https://sadhikamalladi.github.io//assets/dataselection_img/settings.svg" alt="Cartoon of coreset selection vs transfer data selection." style="
  margin-left: auto;
  margin-right: auto;
  width: 95%;" />
@@ -169,7 +169,7 @@ Check out our paper <a href="https://arxiv.org/abs/2402.04333" target="_blank">h
 <h2 id="selecting-less-data">Selecting LESS Data</h2>
 
 <center>
-<img src="sadhikamalladi.github.io//assets/dataselection_img/method2-cropped.svg" alt="The four major steps of LESS" style="
+<img src="https://sadhikamalladi.github.io//assets/dataselection_img/method2-cropped.svg" alt="The four major steps of LESS" style="
  margin-left: auto;
  margin-right: auto;
  width: 80%;" />
@@ -197,11 +197,11 @@ Check out our paper <a href="https://arxiv.org/abs/2402.04333" target="_blank">h
 
 <center>
 <div class="figure">
-<img src="sadhikamalladi.github.io//assets/dataselection_img/llama_bar.svg" alt="Bar chart of results" style="
+<img src="https://sadhikamalladi.github.io//assets/dataselection_img/llama_bar.svg" alt="Bar chart of results" style="
  margin-left: auto;
  margin-right: auto;
  width: 48%;" />
- <img src="sadhikamalladi.github.io//assets/dataselection_img/mistral_bar.svg" alt="Bar chart of results" style="
+ <img src="https://sadhikamalladi.github.io//assets/dataselection_img/mistral_bar.svg" alt="Bar chart of results" style="
  margin-left: auto;
  margin-right: auto;
  width: 48%;" />
@@ -213,7 +213,7 @@ Check out our paper <a href="https://arxiv.org/abs/2402.04333" target="_blank">h
 
 <center>
 <div class="figure">
-<img src="sadhikamalladi.github.io//assets/dataselection_img/table.png" alt="Table of results" style="
+<img src="https://sadhikamalladi.github.io//assets/dataselection_img/table.png" alt="Table of results" style="
  margin-left: auto;
  margin-right: auto;
  width: 100%;" />
@@ -238,7 +238,7 @@ Check out our paper <a href="https://arxiv.org/abs/2402.04333" target="_blank">h
 
 <center>
 <div class="figure">
-<img src="sadhikamalladi.github.io//assets/dataselection_img/baselines.jpeg" alt="LESS outperforms baselines (bar chart)" style="
+<img src="https://sadhikamalladi.github.io//assets/dataselection_img/baselines.jpeg" alt="LESS outperforms baselines (bar chart)" style="
  margin-left: auto;
  margin-right: auto;
  width: 60%;" />
@@ -256,7 +256,7 @@ Check out our paper <a href="https://arxiv.org/abs/2402.04333" target="_blank">h
 
 <center>
 <div class="figure">
-<img src="sadhikamalladi.github.io//assets/dataselection_img/qualitative.png" alt="Qualitative analysis of examples chosen by LESS." style="
+<img src="https://sadhikamalladi.github.io//assets/dataselection_img/qualitative.png" alt="Qualitative analysis of examples chosen by LESS." style="
  margin-left: auto;
  margin-right: auto;
  width: 100%;" />
@@ -324,7 +324,7 @@ Check out our paper <a href="https://arxiv.org/abs/2402.04333" target="_blank">h
       <p>A <a href="https://arxiv.org/abs/2402.16827">recent survey paper</a> provides a more comprehensive and formal treatment of data selection methods in the context of language models. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name>&lt;a href=&quot;https://xiamengzhou.github.io&quot;&gt;Mengzhou Xia&lt;/a&gt; and Sadhika Malladi</name></author><summary type="html"><![CDATA[TL;DR: We describe how data selection for modern-day LLMs differs from prior settings and how our algorithm, LESS, effectively selects relevant data to cultivate specific capabilities in models during instruction tuning.]]></summary></entry><entry><title type="html">How to Scale Hyperparameters as Batch Size Increases</title><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2024/01/22/SDEs-ScalingRules/" rel="alternate" type="text/html" title="How to Scale Hyperparameters as Batch Size Increases" /><published>2024-01-22T00:00:00-08:00</published><updated>2024-01-22T00:00:00-08:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2024/01/22/SDEs-ScalingRules</id><content type="html" xml:base="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2024/01/22/SDEs-ScalingRules/"><![CDATA[<p><strong>TL;DR:</strong> Stochastic differential equations (SDEs) provide rigorous, empirically validated <strong>scaling rules</strong> that prescribe how to adjust hyperparameters when scaling training runs (Adam or SGD, language or vision) to highly distributed settings without sacrificing performance. This post focuses on empirically useful insights, and a subsequent post will describe the theoretical toolbox of SDEs in more detail.</p>
+</div>]]></content><author><name>&lt;a href=&quot;https://xiamengzhou.github.io&quot;&gt;Mengzhou Xia&lt;/a&gt; and Sadhika Malladi</name></author><summary type="html"><![CDATA[TL;DR: We describe how data selection for modern-day LLMs differs from prior settings and how our algorithm, LESS, effectively selects relevant data to cultivate specific capabilities in models during instruction tuning.]]></summary></entry><entry><title type="html">How to Scale Hyperparameters as Batch Size Increases</title><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2024/01/22/SDEs-ScalingRules/" rel="alternate" type="text/html" title="How to Scale Hyperparameters as Batch Size Increases" /><published>2024-01-22T00:00:00-08:00</published><updated>2024-01-22T00:00:00-08:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2024/01/22/SDEs-ScalingRules</id><content type="html" xml:base="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2024/01/22/SDEs-ScalingRules/"><![CDATA[<p><strong>TL;DR:</strong> Stochastic differential equations (SDEs) provide rigorous, empirically validated <strong>scaling rules</strong> that prescribe how to adjust hyperparameters when scaling training runs (Adam or SGD, language or vision) to highly distributed settings without sacrificing performance. This post focuses on empirically useful insights, and a subsequent post will describe the theoretical toolbox of SDEs in more detail.</p>
 
 <h1 id="scaling-rules-increase-batch-size-without-hurting-performance">Scaling Rules: Increase Batch Size without Hurting Performance</h1>
 
@@ -350,7 +350,7 @@ Check out our paper <a href="https://arxiv.org/abs/2402.04333" target="_blank">h
 
 <center>
 <div class="figure">
-<img src="sadhikamalladi.github.io//assets/sde_img/cifar10_lsr.png" alt="Using SDE theory to predict the failure of the linear scaling rule using just one baseline run." style="
+<img src="https://sadhikamalladi.github.io//assets/sde_img/cifar10_lsr.png" alt="Using SDE theory to predict the failure of the linear scaling rule using just one baseline run." style="
  margin-left: auto;
  margin-right: auto;
  width: 90%;" />
@@ -430,11 +430,11 @@ dX_t = \underbrace{-\nabla \ell(\mathcal{D};X_t)dt}_{\text{Drift: Gradient Flow}
 
 <center>
 <div class="figure">
-<img src="sadhikamalladi.github.io//assets/sde_img/roberta.png" alt="Training RoBERTa models on Wiki+Books with different batch sizes using the square root scaling rule." style="
+<img src="https://sadhikamalladi.github.io//assets/sde_img/roberta.png" alt="Training RoBERTa models on Wiki+Books with different batch sizes using the square root scaling rule." style="
  margin-left: auto;
  margin-right: auto;
  width: 40%;" />
- <img src="sadhikamalladi.github.io//assets/sde_img/gpt.png" alt="Training RoBERTa models on Wiki+Books with different batch sizes using the square root scaling rule." style="
+ <img src="https://sadhikamalladi.github.io//assets/sde_img/gpt.png" alt="Training RoBERTa models on Wiki+Books with different batch sizes using the square root scaling rule." style="
  margin-left: auto;
  margin-right: auto;
  width: 40%;" />
@@ -464,18 +464,18 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 
 <p>SDEs are a powerful, generalizable tool for studying stochastic optimization. The results are mostly agnostic to the model architecture and dataset, so just a little bit of understanding goes a long way and provides useful empirical insights. In a separate post, I’ll talk a bit more about the proof techniques and rigorous considerations involved in using SDEs to approximate discrete optimization.</p>
 
-<p><strong>Acknowledgements</strong>: Thanks (in alphabetical order) to Tianyu Gao, Surbhi Goel, Bingbin Liu, Kaifeng Lyu, Abhi Venigalla, Mengzhou Xia, and Howard Yen for their feedback on this post! I’m deeply indebted to Zhiyuan Li for patiently teaching me about SDEs and their technical features. Feedback from Twitter prompted me to add a link to the section in our paper that provides an easy setting to work out the scaling rule in.  The works I mention in this paper were co-authored with (in alphabetical order) Sanjeev Arora, Zhiyuan Li, Kaifeng Lyu, Abhishek Panigrahi, Runzhe Wang, and Tianhao Wang.</p>]]></content><author><name>Sadhika Malladi</name></author><summary type="html"><![CDATA[TL;DR: Stochastic differential equations (SDEs) provide rigorous, empirically validated scaling rules that prescribe how to adjust hyperparameters when scaling training runs (Adam or SGD, language or vision) to highly distributed settings without sacrificing performance. This post focuses on empirically useful insights, and a subsequent post will describe the theoretical toolbox of SDEs in more detail.]]></summary></entry><entry><title type="html">British Round-Up</title><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2023/02/01/chai/" rel="alternate" type="text/html" title="British Round-Up" /><published>2023-02-01T00:00:00-08:00</published><updated>2023-02-01T00:00:00-08:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2023/02/01/chai</id><content type="html" xml:base="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2023/02/01/chai/"><![CDATA[<h1 id="introduction">Introduction</h1>
+<p><strong>Acknowledgements</strong>: Thanks (in alphabetical order) to Tianyu Gao, Surbhi Goel, Bingbin Liu, Kaifeng Lyu, Abhi Venigalla, Mengzhou Xia, and Howard Yen for their feedback on this post! I’m deeply indebted to Zhiyuan Li for patiently teaching me about SDEs and their technical features. Feedback from Twitter prompted me to add a link to the section in our paper that provides an easy setting to work out the scaling rule in.  The works I mention in this paper were co-authored with (in alphabetical order) Sanjeev Arora, Zhiyuan Li, Kaifeng Lyu, Abhishek Panigrahi, Runzhe Wang, and Tianhao Wang.</p>]]></content><author><name>Sadhika Malladi</name></author><summary type="html"><![CDATA[TL;DR: Stochastic differential equations (SDEs) provide rigorous, empirically validated scaling rules that prescribe how to adjust hyperparameters when scaling training runs (Adam or SGD, language or vision) to highly distributed settings without sacrificing performance. This post focuses on empirically useful insights, and a subsequent post will describe the theoretical toolbox of SDEs in more detail.]]></summary></entry><entry><title type="html">British Round-Up</title><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2023/02/01/chai/" rel="alternate" type="text/html" title="British Round-Up" /><published>2023-02-01T00:00:00-08:00</published><updated>2023-02-01T00:00:00-08:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2023/02/01/chai</id><content type="html" xml:base="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2023/02/01/chai/"><![CDATA[<h1 id="introduction">Introduction</h1>
 <p>I’m in London for a month, but it only took me two days to realize that British food is very fried (gluten!) and lacks vegetables. There are plenty of restaurants with creative dishes and vegetables, but they are not quintessentially British. So, I’m hard-pressed to see how I can sample gluten-free British cuisine. I focused on chai, fish &amp; chips, and high tea. There’s not much to say about high tea other than the fact that I did go to the one at The Royal Horseguards Hotel and it was indeed gluten-free. But overall, I realized that high tea is not that great. The tea itself is not really that important, and the little sandwiches and pastries are not to my taste. I don’t even get what the point is of combining tea with weird mayonnaise-y savory foods.</p>
 
 <p>Although I didn’t set out to find it, I had some great Chinese food in London too! I had gluten free dumplings at Ping Pong and hot pot at Haidilao! Ping Pong was fantastic and had lots of options in my opinion. Haidilao is not as good as other hot pot places, because they don’t really make a super spicy soup like I want. But I got to see a <em>bian lian</em> performer and received some memorabilia at Haidilao, so it will always be a special memory to me!</p>
 
-<p><img src="sadhikamalladi.github.io//assets/british/ping_pong.JPG" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 65%;" /></p>
+<p><img src="https://sadhikamalladi.github.io//assets/british/ping_pong.JPG" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 65%;" /></p>
 <center>GF Dumplings at Ping Pong.</center>
 
 <h1 id="fish--chips">Fish &amp; Chips</h1>
 <p>I’m a bit lazy to go into the details of all the fish and chips places I went to, but I followed <a href="https://www.mygfguide.com/london-gluten-free-fish-and-chips/">this guide</a>. It’s a little outdated, so be sure to call ahead. We tried out Indigo, Mayfair Chippy, and Old Shades. Old Shades was by far the most fun place to go, because there was no line, and our bartender performed some incredible magic for us! The fish &amp; chips were great for the price, but I think Indigo had the best overall taste. Mayfair Chippy was kind of unpleasant because we sat outside in the cold, and they gave a giant piece of fish that just fell apart as soon as I tried to pick it up. I guess there is such a thing as too tender! But they had a great tomato curry sauce that was non-traditional but really delicious. Overall, I definitely still like fish and chips, and I think they’re worth the hype, but I also cannot and will not eat the weird mushy green peas that always come with them.</p>
 
-<p><img src="sadhikamalladi.github.io//assets/british/mayfair.JPG" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 65%;" /></p>
+<p><img src="https://sadhikamalladi.github.io//assets/british/mayfair.JPG" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 65%;" /></p>
 <center>Fish &amp; Chips from Mayfair Chippy. Great tomato sauce!</center>
 
 <h1 id="chai">Chai</h1>
@@ -497,9 +497,9 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <h2 id="charista">Charista</h2>
 <p>I spotted this place on one of my runs and decided it looked trendy but authentic. They have a few different types of chai, and they also have snacks (which aren’t gluten-free). Intrigued by date molasses, I decided to try the Gurer chai. They served it to me in a normal glass, not a mug, which really enhanced the authentic chai experience: a fearful grip near the lip of the glass followed by the urgency to sip it before your fingertips burn. This chai was really good - I can’t blame them for the lack of spices because the cashier did tell me it would be sweet. The depth of the dates as a sweetener compensated pretty well though.</p>
 
-<p><img src="sadhikamalladi.github.io//assets/british/charista.JPG" alt="legend" style="  margin-left: auto;  margin-right: auto;  width: 49%;" />
-<img src="sadhikamalladi.github.io//assets/british/charista_chai.JPG" alt="legend" style="  margin-left: auto;  margin-right: auto;  width: 49%;" /></p>
-<center>The outside of Charista (left) and the authentic cup that burns your fingers (right).</center>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction I’m in London for a month, but it only took me two days to realize that British food is very fried (gluten!) and lacks vegetables. There are plenty of restaurants with creative dishes and vegetables, but they are not quintessentially British. So, I’m hard-pressed to see how I can sample gluten-free British cuisine. I focused on chai, fish &amp; chips, and high tea. There’s not much to say about high tea other than the fact that I did go to the one at The Royal Horseguards Hotel and it was indeed gluten-free. But overall, I realized that high tea is not that great. The tea itself is not really that important, and the little sandwiches and pastries are not to my taste. I don’t even get what the point is of combining tea with weird mayonnaise-y savory foods.]]></summary></entry><entry><title type="html">Equi-Table</title><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/10/04/equitable/" rel="alternate" type="text/html" title="Equi-Table" /><published>2022-10-04T00:00:00-07:00</published><updated>2022-10-04T00:00:00-07:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/10/04/equitable</id><content type="html" xml:base="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/10/04/equitable/"><![CDATA[<h1 id="introduction">Introduction</h1>
+<p><img src="https://sadhikamalladi.github.io//assets/british/charista.JPG" alt="legend" style="  margin-left: auto;  margin-right: auto;  width: 49%;" />
+<img src="https://sadhikamalladi.github.io//assets/british/charista_chai.JPG" alt="legend" style="  margin-left: auto;  margin-right: auto;  width: 49%;" /></p>
+<center>The outside of Charista (left) and the authentic cup that burns your fingers (right).</center>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction I’m in London for a month, but it only took me two days to realize that British food is very fried (gluten!) and lacks vegetables. There are plenty of restaurants with creative dishes and vegetables, but they are not quintessentially British. So, I’m hard-pressed to see how I can sample gluten-free British cuisine. I focused on chai, fish &amp; chips, and high tea. There’s not much to say about high tea other than the fact that I did go to the one at The Royal Horseguards Hotel and it was indeed gluten-free. But overall, I realized that high tea is not that great. The tea itself is not really that important, and the little sandwiches and pastries are not to my taste. I don’t even get what the point is of combining tea with weird mayonnaise-y savory foods.]]></summary></entry><entry><title type="html">Equi-Table</title><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/10/04/equitable/" rel="alternate" type="text/html" title="Equi-Table" /><published>2022-10-04T00:00:00-07:00</published><updated>2022-10-04T00:00:00-07:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/10/04/equitable</id><content type="html" xml:base="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/10/04/equitable/"><![CDATA[<h1 id="introduction">Introduction</h1>
 <p>I’ve been in Europe for around two and a half weeks but barely had the chance to dictate my own food choices. The first week was spent at a conference that provided all of the meals (cafeteria-style but still pretty good), and the last week was spent on a deadline, so I just ate the food I packed for the trip. I went to Whole Foods before I left and got many varieties of cup noodles, fully cooked curries, and rice. These are actually pretty good in flavor and kept well in the suitcase!</p>
 
 <p>So I finally got the chance to explore the culinary scene around Zurich. I don’t think Switzerland is really a place for foodies — their signature dish, raclette, relies on a very high quality cheese and does not go above and beyond that to incorporate extra flavor. Regardless, I was determined to make the most of my time in Zurich, so I went to Equi-Table.</p>
@@ -514,7 +514,7 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>The restaurant theme is a modern and sustainable take on local Swiss ingredients. I only later realized was that this meant no seafood! I also had some impression that the Alps would grow the greatest produce in the world, but I’m not sure why I would even think that.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5177.JPG" alt="legend" style="display:block;
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5177.JPG" alt="legend" style="display:block;
  margin-left: auto;
  margin-right: auto;
  width: 65%;" />
@@ -525,15 +525,15 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>As usual, the meal started with a bunch of tiny bites that did not count as a course. I ate the broccoli with tweezers, which felt very fancy. The flavor wasn’t very balanced, because it’s hard to make miso compete with charred broccoli, but it was still a nice texture to eat. The bread was just as amazing as it looks: the exterior leaned towards a thicker rustic crust though the inside was fluffy. It came with a whipped butter that made the whole situation taste like cornbread with brown butter. But the best bite, by far, was the polenta chip with the amazing chive yogurt. It looks like a lot of dip for a small number of thin chips, but I finished the dip and found the flavor to go well with the deep-fried chips.</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5179.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5179.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 30%;" />
- <img src="sadhikamalladi.github.io//assets/equitable/IMG_5182.JPG" alt="legend" style="
+ <img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5182.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 30%;" />
- <img src="sadhikamalladi.github.io//assets/equitable/IMG_5183.JPG" alt="legend" style="
+ <img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5183.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 30%;" />
@@ -543,7 +543,7 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 
 <p>From there, we moved on to yet another bite situation. This bite felt so European because it was pork wrapped around some cabbage and topped with mustard powder. The flavor was nice, but the pork could have been crispier somehow.</p>
 <p>
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5184.JPG" alt="legend" style="display:block;
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5184.JPG" alt="legend" style="display:block;
  margin-left: auto;
  margin-right: auto;
  width: 30%;" />
@@ -555,11 +555,11 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>At this point I started to worry I would eat 6 courses and go home hungry. Luckily the second course was more substantial. The dish was sweetbread with artichokes, parsley foam, and parsley oil. I think the problem with putting foam and oil in one dish is that the oil pools beneath the foam and becomes a little gross. But I liked the overall flavors a lot!</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5185.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5185.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 49%;" />
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5186.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5186.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 49%;" />
@@ -571,11 +571,11 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>The fourth course became even better. It was a truffle risotto! I was so excited to get some familiar, real flavors back into the meal. It was a nice portion, large enough that the earthy truffle was a star but small enough that I didn’t get the typical late-stage risotto regret. It turns out that the Alps actually do boast some truffles. You can see in the picture that they put a lot on top (and that kind of scared me) but the waiter assured me that the Swiss truffles are not as expressive as the Italian ones.</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5187.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5187.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 49%;" />
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5188.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5188.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 49%;" />
@@ -585,7 +585,7 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>At this point I am totally primed for the main dish. And it was pretty worth the wait! It was a venison with a smoked, somehow softened carrot and some harder carrot slices. The waiter poured the jus on the plate for me. Overall the dish was great, and I of course loved the pairing of something smoky with red meat. But I don’t have much more to say about it than that.</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5189.JPG" alt="legend" style="display:block;
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5189.JPG" alt="legend" style="display:block;
  margin-left: auto;
  margin-right: auto;
  width: 40%;" />
@@ -595,11 +595,11 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>Now came the desserts, of which there were many. Surprisingly, I liked the first one: grapes with grape ice. It was very refreshing after the entire meal. The yogurt dessert was totally carried by the lemon-flavored shard of something that they put on top. It was definitely not carried by what I consider to be the blandest blueberries to ever exist. The beet candy and jelly were a neat idea but entirely forgettable. The dark chocolate was, as expected, extremely rich and heavenly. What I learned is that dark chocolate does not need to be bitter: it can carry the earthy taste without bitterness if it is treated correctly. There was one more dessert that was like a cheesecake topped with blueberries, but at this point I was tired of desserts (and giant, flavorless blueberries).</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5191.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5191.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 40%;" />
- <img src="sadhikamalladi.github.io//assets/equitable/IMG_5192.JPG" alt="legend" style="
+ <img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5192.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 40%;" />
@@ -608,11 +608,11 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 </p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5195.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5195.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 40%;" />
-<img src="sadhikamalladi.github.io//assets/equitable/IMG_5196.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/equitable/IMG_5196.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 40%;" />
@@ -630,13 +630,13 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
       <p>To be fair, the Alps does produce some of the greatest water in the world. All of the water in Switzerland is drinkable unless noted otherwise, and I’ve even filled up my water bottle from a stone decorative fountain! <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction I’ve been in Europe for around two and a half weeks but barely had the chance to dictate my own food choices. The first week was spent at a conference that provided all of the meals (cafeteria-style but still pretty good), and the last week was spent on a deadline, so I just ate the food I packed for the trip. I went to Whole Foods before I left and got many varieties of cup noodles, fully cooked curries, and rice. These are actually pretty good in flavor and kept well in the suitcase!]]></summary></entry><entry><title type="html">Le CouCou</title><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/08/17/lecoucou/" rel="alternate" type="text/html" title="Le CouCou" /><published>2022-08-17T00:00:00-07:00</published><updated>2022-08-17T00:00:00-07:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/08/17/lecoucou</id><content type="html" xml:base="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/08/17/lecoucou/"><![CDATA[<h1 id="introduction">Introduction</h1>
+</div>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction I’ve been in Europe for around two and a half weeks but barely had the chance to dictate my own food choices. The first week was spent at a conference that provided all of the meals (cafeteria-style but still pretty good), and the last week was spent on a deadline, so I just ate the food I packed for the trip. I went to Whole Foods before I left and got many varieties of cup noodles, fully cooked curries, and rice. These are actually pretty good in flavor and kept well in the suitcase!]]></summary></entry><entry><title type="html">Le CouCou</title><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/08/17/lecoucou/" rel="alternate" type="text/html" title="Le CouCou" /><published>2022-08-17T00:00:00-07:00</published><updated>2022-08-17T00:00:00-07:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/08/17/lecoucou</id><content type="html" xml:base="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/08/17/lecoucou/"><![CDATA[<h1 id="introduction">Introduction</h1>
 <p>I really knew nothing about this place before going in. I had nothing to do with picking it, but I really, really enjoyed it! Generally French cuisine seems like an absurd overload of butter in an attempt to approach umami, but this was really unique and memorable. I had no issues with my gluten allergy here, and the waiter was very helpful in steering us away from a fixed menu experience. Although they can adapt the fixed menu to be gluten-free, he said the experience was severely compromised and it’s better to go a la carte.</p>
 
 <p>Overall the pictures are really bad quality for this post because I sat right under a light. But it’s ok.</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/le_coucou/IMG_4830.JPG" alt="legend" style="display:block;
+<img src="https://sadhikamalladi.github.io//assets/le_coucou/IMG_4830.JPG" alt="legend" style="display:block;
  margin-left: auto;
  margin-right: auto;
  width: 50%;" />
@@ -648,7 +648,7 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>We started with the yellowfin tuna appetizer, which was actually sweet because of the raisins! I loved it though I forgot to take a picture. We then moved on to the pike dumpling with lobster sauce. To be honest, I was excited to eat a gluten-free dumpling, but this dumpling was nothing like what I expected. It was very soft (probably did not have an actual dough shell) and very large. The seafood flavor was really overwhelming (not surprising, I know), but the lobster sauce really calmed things down as a nice base.</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/le_coucou/IMG_4831.JPG" alt="legend" style="display:block;
+<img src="https://sadhikamalladi.github.io//assets/le_coucou/IMG_4831.JPG" alt="legend" style="display:block;
  margin-left: auto;
  margin-right: auto;
  width: 50%;" />
@@ -659,11 +659,11 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>The main entree was a real hit. Loyal followers will remember that I was disappointed by the duck in Hutong. But the duck in Le Coucou (the dish it is well-known for) is fantastic. It came in two parts: the breast was already evenly divided between the two of us and accompanied by foie gras and cherries. But the rest of the duck was still on the bone<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> and was delivered in a pan for us to share. The duck had a great tart flavor from the cherries that cut through the fattiness, and the foie gras was such a nice treat to enjoy in between. I initially thought that all together, the dish would be far too rich, but it ended up being very balanced and delicious!</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/le_coucou/IMG_4832.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/le_coucou/IMG_4832.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 45%;" />
-<img src="sadhikamalladi.github.io//assets/le_coucou/IMG_4833.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/le_coucou/IMG_4833.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 45%;" />
@@ -683,7 +683,7 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
       <p>I let my dinner companion deal with this but it actually was not hard to get the meat off the bone since it was cooked so well! <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction I really knew nothing about this place before going in. I had nothing to do with picking it, but I really, really enjoyed it! Generally French cuisine seems like an absurd overload of butter in an attempt to approach umami, but this was really unique and memorable. I had no issues with my gluten allergy here, and the waiter was very helpful in steering us away from a fixed menu experience. Although they can adapt the fixed menu to be gluten-free, he said the experience was severely compromised and it’s better to go a la carte.]]></summary></entry><entry><title type="html">Veda</title><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/04/08/veda/" rel="alternate" type="text/html" title="Veda" /><published>2022-04-08T00:00:00-07:00</published><updated>2022-04-08T00:00:00-07:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/04/08/veda</id><content type="html" xml:base="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/04/08/veda/"><![CDATA[<h1 id="introduction">Introduction</h1>
+</div>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction I really knew nothing about this place before going in. I had nothing to do with picking it, but I really, really enjoyed it! Generally French cuisine seems like an absurd overload of butter in an attempt to approach umami, but this was really unique and memorable. I had no issues with my gluten allergy here, and the waiter was very helpful in steering us away from a fixed menu experience. Although they can adapt the fixed menu to be gluten-free, he said the experience was severely compromised and it’s better to go a la carte.]]></summary></entry><entry><title type="html">Veda</title><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/04/08/veda/" rel="alternate" type="text/html" title="Veda" /><published>2022-04-08T00:00:00-07:00</published><updated>2022-04-08T00:00:00-07:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/04/08/veda</id><content type="html" xml:base="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/04/08/veda/"><![CDATA[<h1 id="introduction">Introduction</h1>
 <p>This was a very spontaneous trip to Philadelphia, and since we left Princeton in the early afternoon, we were able to see the Rodin Museum! It was amazing to see so many of his most influential works up close, and it was a peaceful visit even though the museum is in the heart of the city.</p>
 
 <p>I haven’t been able to eat Indian food at a restaurant in so long. Even though it’s one of the most GF-friendly cuisines, many restaurants are not educated on what gluten is and hence can cross-contaminate. It’s not terrible for me, because I can cook a lot of Indian dishes at home, but there are certainly some dishes that are just too time-consuming to be worth it.</p>
@@ -694,11 +694,11 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>I miss chaat a lot. Pani puri, dahi puri, etc will always be out of reach, since it’s difficult to make these dishes without the factory-manufactured handheld wheat puris. But, other, more deconstructed forms of chaat like bhel puri are still possible. At Veda, I tried spinach chaat (which seemed to have an approximation of spinach pakoras in it?) and ragda patties. It was great to have the classic chaat flavors again: tamarind, onion, tomato, etc.</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/veda/IMG_4179.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/veda/IMG_4179.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 45%;" />
- <img src="sadhikamalladi.github.io//assets/veda/IMG_4180.JPG" alt="legend" style="
+ <img src="https://sadhikamalladi.github.io//assets/veda/IMG_4180.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 45%;" />
@@ -712,11 +712,11 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>We ordered malai kofta and tandoori chicken for the main dishes.</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/veda/IMG_4183.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/veda/IMG_4183.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 35%;" />
- <img src="sadhikamalladi.github.io//assets/veda/IMG_4184.JPG" alt="legend" style="
+ <img src="https://sadhikamalladi.github.io//assets/veda/IMG_4184.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 55%;" />
@@ -732,7 +732,7 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>We tried the mango lassi, which was delicious but required my mouth to act as the world’s most powerful vacuum in order for me to drink through the straw. We also ordered kheer and shrikhand (the two exciting GF dessert options).</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/veda/IMG_4187.JPG" alt="legend" style="display:block;
+<img src="https://sadhikamalladi.github.io//assets/veda/IMG_4187.JPG" alt="legend" style="display:block;
  margin-left: auto;
  margin-right: auto;
  width: 75%;" />
@@ -754,7 +754,7 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
       <p>This inspired an order of raita, which was pretty good but needed more cucumbers or tomatoes in my opinion. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction This was a very spontaneous trip to Philadelphia, and since we left Princeton in the early afternoon, we were able to see the Rodin Museum! It was amazing to see so many of his most influential works up close, and it was a peaceful visit even though the museum is in the heart of the city.]]></summary></entry><entry><title type="html">Hutong</title><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/03/16/hutong/" rel="alternate" type="text/html" title="Hutong" /><published>2022-03-16T00:00:00-07:00</published><updated>2022-03-16T00:00:00-07:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/03/16/hutong</id><content type="html" xml:base="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/03/16/hutong/"><![CDATA[<h1 id="introduction">Introduction</h1>
+</div>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction This was a very spontaneous trip to Philadelphia, and since we left Princeton in the early afternoon, we were able to see the Rodin Museum! It was amazing to see so many of his most influential works up close, and it was a peaceful visit even though the museum is in the heart of the city.]]></summary></entry><entry><title type="html">Hutong</title><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/03/16/hutong/" rel="alternate" type="text/html" title="Hutong" /><published>2022-03-16T00:00:00-07:00</published><updated>2022-03-16T00:00:00-07:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/03/16/hutong</id><content type="html" xml:base="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/03/16/hutong/"><![CDATA[<h1 id="introduction">Introduction</h1>
 <p>People around me are always talking about going to Edison, NJ for authentic Indian and Chinese food. I didn’t have much of a chance to do this pilgrimage before I was diagnosed as gluten-free, and these restaurants rarely mark anything as gluten free.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> Usually, I am okay with this, since I can replicate most dishes on my own, but lately I have wanted to try some Chinese dishes that are hard to cook in a household. Chief among these was Peking duck.</p>
 
 <p>Peking duck faded to the back of my mind until one of my friends mentioned that he had eaten a delicious Peking duck in NYC at a fancy restaurant. Fancy restaurant usually implies awareness of celiac disease, so we called them and discovered they can make the Peking duck gluten-free (sort of, but more on that later). Hence we planned a trip to Hutong.</p>
@@ -765,15 +765,15 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>Hutong has food besides the Peking duck, and we did order a lot of other starters and sides.</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/hutong/IMG_4077.JPG" alt="legend" style="
+<img src="https://sadhikamalladi.github.io//assets/hutong/IMG_4077.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 25%;" />
- <img src="sadhikamalladi.github.io//assets/hutong/IMG_4078.JPG" alt="legend" style="
+ <img src="https://sadhikamalladi.github.io//assets/hutong/IMG_4078.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 35%;" />
- <img src="sadhikamalladi.github.io//assets/hutong/IMG_4079.JPG" alt="legend" style="
+ <img src="https://sadhikamalladi.github.io//assets/hutong/IMG_4079.JPG" alt="legend" style="
  margin-left: auto;
  margin-right: auto;
  width: 35%;" />
@@ -789,7 +789,7 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>The duck arrives in two phases: the first is the desirable parts of the duck cooked on their own, and the second is the less desirable parts minced up and stir fried with green beans and some sauce. This was where the first disappointment hit: the second phase is not gluten-free and they pre-mix the sauce so it’s impossible to make gluten-free. This was surprising to me: on the phone they seemed to suggest that the gluten-free Peking duck experience would not be compromised at all (which would make sense, since the duck is just cooked in a special way and served with some simple sides). Also, what kind of fancy restaurant can’t re-mix a sauce? But we went all the way to New York so I acted like it didn’t matter.</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/hutong/IMG_4081.JPG" alt="legend" style="display:block;
+<img src="https://sadhikamalladi.github.io//assets/hutong/IMG_4081.JPG" alt="legend" style="display:block;
  margin-left: auto;
  margin-right: auto;
  width: 75%;" />
@@ -799,7 +799,7 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>When they put it on the table, the duck looked pretty exciting. It was a little alarming that they gave this for 3 people and I could only eat this phase, but luckily others at the table were nice and let me have more than my fair share. Once again, the waiter delivered some disappointing news: I couldn’t have any of the sides or the pancakes with the duck, not even the hoisin sauce<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>. They provided me some sad lettuce pieces that I could use to wrap the duck myself and gave honey on the side.</p>
 
 <p>
-<img src="sadhikamalladi.github.io//assets/hutong/IMG_4084.JPG" alt="legend" style="display:block;
+<img src="https://sadhikamalladi.github.io//assets/hutong/IMG_4084.JPG" alt="legend" style="display:block;
  margin-left: auto;
  margin-right: auto;
  width: 50%;" />
@@ -824,48 +824,48 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
       <p>Ok, maybe this is not very surprising, but I assumed when they said they had a gluten-free offering of the duck, they had gluten-free hoisin sauce. It’s fairly common and easy to find. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction People around me are always talking about going to Edison, NJ for authentic Indian and Chinese food. I didn’t have much of a chance to do this pilgrimage before I was diagnosed as gluten-free, and these restaurants rarely mark anything as gluten free.1 Usually, I am okay with this, since I can replicate most dishes on my own, but lately I have wanted to try some Chinese dishes that are hard to cook in a household. Chief among these was Peking duck. It’s worth noting that most Indian food is gluten-free except for the ingredient asafoetida, also known as hing. And this spice does not contain gluten on its own, but it is usually processed with a bit of flour to make it easier to grind up. Hing is not ubiquitous in Indian cuisine, but I still worry about cross-contamination. &#8617;]]></summary></entry><entry><title type="html">Marea</title><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/03/07/marea/" rel="alternate" type="text/html" title="Marea" /><published>2022-03-07T00:00:00-08:00</published><updated>2022-03-07T00:00:00-08:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/03/07/marea</id><content type="html" xml:base="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2022/03/07/marea/"><![CDATA[<h1 id="introduction">Introduction</h1>
+</div>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction People around me are always talking about going to Edison, NJ for authentic Indian and Chinese food. I didn’t have much of a chance to do this pilgrimage before I was diagnosed as gluten-free, and these restaurants rarely mark anything as gluten free.1 Usually, I am okay with this, since I can replicate most dishes on my own, but lately I have wanted to try some Chinese dishes that are hard to cook in a household. Chief among these was Peking duck. It’s worth noting that most Indian food is gluten-free except for the ingredient asafoetida, also known as hing. And this spice does not contain gluten on its own, but it is usually processed with a bit of flour to make it easier to grind up. Hing is not ubiquitous in Indian cuisine, but I still worry about cross-contamination. &#8617;]]></summary></entry><entry><title type="html">Marea</title><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/03/07/marea/" rel="alternate" type="text/html" title="Marea" /><published>2022-03-07T00:00:00-08:00</published><updated>2022-03-07T00:00:00-08:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/03/07/marea</id><content type="html" xml:base="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2022/03/07/marea/"><![CDATA[<h1 id="introduction">Introduction</h1>
 <p>We went to Marea to celebrate my birthday a few days late. We spent only part of the day in New York and had high tea just before going to the restaurant. It turns out that high tea actually involves a lot of food, so this might have hampered our enjoyment of the food (as opposed to if we had gone on empty stomachs). Regardless, we thoroughly enjoyed everything we did eat at Marea.</p>
 
 <p>It had started raining, so we decided to get to the restaurant earlier and grab a drink at the bar if we needed to wait for our reservation. We arrived slightly before 5pm for a 5:45pm reservation, but the staff were very accommodating and sat us as soon as the restaurant team meeting was over. In the few minutes we spent at the bar, we checked the <a href="https://www.nytimes.com/2009/10/21/dining/reviews/21rest.html">New York Times review</a> of the restaurant for suggestions on what to order. The basic gist we had was that appetizers and pasta were good, but the fish-centric second course dishes were not. This was OK with us at the time, because we weren’t especially hungry.</p>
 
-<p><img src="sadhikamalladi.github.io//assets/marea/IMG_3941.jpeg" alt="legend" style="display: block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
+<p><img src="https://sadhikamalladi.github.io//assets/marea/IMG_3941.jpeg" alt="legend" style="display: block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
 
 <h1 id="service">Service</h1>
 <p>Before even talking about the food, I have to mention the service. Our waitress (whose name I regrettably didn’t get) was incredibly attentive and thoughtful without hovering over us. She had great recommendations and went above and beyond to ensure all of the food coming to our table was gluten-free. We also appreciated the other service members of the restaurant, especially that someone came by and re-folded our napkins when we got up to go to the restrooms.</p>
 
 <h1 id="bread-and-amuse-bouche">Bread and Amuse-Bouche</h1>
-<p><img src="sadhikamalladi.github.io//assets/marea/IMG_3944.jpeg" alt="legend" style="  margin-left: auto;  margin-right: auto;  width:49%;" />
-<img src="sadhikamalladi.github.io//assets/marea/IMG_3947.jpeg" alt="legend" style="  margin-left: auto;  margin-right: auto;  width: 49%;" /></p>
+<p><img src="https://sadhikamalladi.github.io//assets/marea/IMG_3944.jpeg" alt="legend" style="  margin-left: auto;  margin-right: auto;  width:49%;" />
+<img src="https://sadhikamalladi.github.io//assets/marea/IMG_3947.jpeg" alt="legend" style="  margin-left: auto;  margin-right: auto;  width: 49%;" /></p>
 
 <p>The free offerings of a restaurant speak volumes. The gluten-free bread here was not exciting. It was cracker-like in texture and had some weird seeds stuck to the crust as is common practice. I never understood the seeds on the side of the bread: like, does it mean there are seeds in the bread? Is it some kind of healthiness indicator? The dipping options shined here. They provided olive oil and an incredible eggplant mousse-like spread with it. It was quite surprising to get something eggplant-forward at a seafood restaurant, but the rest of the meal also heavily featured eggplant (in part because of our item selections).</p>
 
-<p><img src="sadhikamalladi.github.io//assets/marea/IMG_3949.jpeg" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
+<p><img src="https://sadhikamalladi.github.io//assets/marea/IMG_3949.jpeg" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
 
 <p>The amuse bouche was a twist on a caprese salad, and it also featured eggplant. To be honest, it didn’t particularly arouse my taste buds. It also didn’t convey a clear vision for what our meal would look like or what flavors would be highlighted (except for eggplant, which tasted wildly different each time we ate it). A great bite, but not one that lingered and excited the mind.</p>
 
 <h1 id="crudi-and-starter">Crudi and Starter</h1>
-<p><img src="sadhikamalladi.github.io//assets/marea/IMG_3950.jpeg" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
+<p><img src="https://sadhikamalladi.github.io//assets/marea/IMG_3950.jpeg" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
 
 <p>We were excited about a few different crudo options, so we got the “Assagio de Tre,” which read like the chef would select three exciting crudi for us, but actually just meant we had to pick the three we wanted samples of. We got the hamachi, tonno, and cannolicche (without the gluten-containing fried ingredients). I didn’t enjoy the cannolicche as much as the other two, but that may have been because of a general aversion to clam texture. The hamachi was by far the best bite in terms of composition: the bite traveled smoothly from the gentle fish flavor to the citrus from the kumquat. The raw tuna was most satisfying as far as the fish quality was concerned, but I’m not sure if that’s just because it was cut in a shape that made the bite feel more substantial (and maybe closer to what I’m used to from raw fish). Overall, I think the crudi was worth it but didn’t seem to convey a distinctly Italian theme.</p>
 
-<p><img src="sadhikamalladi.github.io//assets/marea/IMG_3953.jpeg" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
+<p><img src="https://sadhikamalladi.github.io//assets/marea/IMG_3953.jpeg" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
 
 <p>We got the Astice, an intriguing combination of eggplant, cheese, and lobster, on the recommendation of the New York Times article. I’m very new to lobster (and seafood in general), but this dish educated me on the appeal of lobster. Interestingly, the eggplant strips and the tomatoes served the same purpose: bursts of acidity amid a creamy umami experience. The burrata was probably whipped and wrapped nicely around the hunks of lobster while adding to the texture of each bite.</p>
 
 <h1 id="main-dish">Main Dish</h1>
-<p><img src="sadhikamalladi.github.io//assets/marea/IMG_3954.jpeg" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
+<p><img src="https://sadhikamalladi.github.io//assets/marea/IMG_3954.jpeg" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
 
 <p>We got the gluten-free pasta with red wine braised octopus and bone marrow. Our waitress suggested that was the most popular dish the restaurant was known for. I found the octopus delicious and tender, and the bone marrow pieces lended a pop of richness to the dish. Unlike most pasta-plus-something dishes, the entire item was cohesive, and it felt like each ingredient needed the others. The sauce adequately coated the pasta without pooling into the bottom of the bowl, and the chew of the octopus benefited from the melting bone marrow texture.</p>
 
 <p>The gluten-free pasta was incredible. I recently started making my own (overly thick) gluten-free noodles at home, so I’m no longer satisfied with the standard gluten-free pastas that disintegrate in sauces. It was clear the restaurant put effort into making this pasta, and the ridges and shape held steadfast amid slippery conditions.</p>
 
 <h1 id="desserts">Desserts</h1>
-<p><img src="sadhikamalladi.github.io//assets/marea/IMG_3957.jpeg" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
+<p><img src="https://sadhikamalladi.github.io//assets/marea/IMG_3957.jpeg" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
 
 <p>We immediately ordered the tiramisu (and our waitress knew we would leap at the option of gluten-free tiramisu). But, we actually also received a tropical sorbet because we were celebrating my birthday. The sorbet may have been more exciting if I hadn’t just eaten three giant scoops of sorbet at high tea. Anyways, I appreciated the thought and design.</p>
 
-<p><img src="sadhikamalladi.github.io//assets/marea/IMG_5856.JPG" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
+<p><img src="https://sadhikamalladi.github.io//assets/marea/IMG_5856.JPG" alt="legend" style="display:block;  margin-left: auto;  margin-right: auto;  width: 50%;" /></p>
 
 <p>The tiramisu came through a stunning presentation. The cube, dusted in cocoa flours on five of its sides, was very unique. It came with some cream and cookie-esque crumbles, but the cake itself was the star. The cream and the cake were the same texture, and my fork glided through the cross-section just under the force of its weight. The flavors were strong and evenly distributed through the layers, and it was simply the best tiramisu I’ve ever had, gluten-free or not.  There were no twists on the dessert: it was just the classic item executed perfectly.</p>
 
@@ -875,7 +875,7 @@ Training RoBERTa models on Wiki+Books (left) and GPT-2 on WikiText-103 (right) w
 <p>During the main meal, I got the navy punch cocktail, which purportedly contained “clarified milk.” I was nervous about it but reassured by my waitress, and indeed, the cocktail was clear and did not actually have milk in it. It had a creaminess that was reminiscent of cream soda. Our waitress told us the cocktail takes 4 days to create, and I fully believe it, given the flavor profiles developed.</p>
 
 <h1 id="summary">Summary</h1>
-<p>Our meal at Marea was delicious, though it was hard to grasp the culinary theme or vision from the dishes we got. Most items alone were fantastic, and the use of eggplant was innovative and thought-provoking. We followed the NYT suggestion and stayed away from any courses after the Primi section of the menu. The service, including the accommodations for celiac disease, was amazing and elevated the experience. If I returned, I would order many of the same dishes and try another pasta, since that gluten-free pasta did not let down my expectations.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction We went to Marea to celebrate my birthday a few days late. We spent only part of the day in New York and had high tea just before going to the restaurant. It turns out that high tea actually involves a lot of food, so this might have hampered our enjoyment of the food (as opposed to if we had gone on empty stomachs). Regardless, we thoroughly enjoyed everything we did eat at Marea.]]></summary></entry><entry><title type="html">Infinite Winter - Stage 2</title><link href="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2020/12/26/infinite-jest-2/" rel="alternate" type="text/html" title="Infinite Winter - Stage 2" /><published>2020-12-26T00:00:00-08:00</published><updated>2020-12-26T00:00:00-08:00</updated><id>sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2020/12/26/infinite-jest-2</id><content type="html" xml:base="sadhikamalladi.github.io//sadhikamalladi.github.io/blog/2020/12/26/infinite-jest-2/"><![CDATA[<h1 id="the-second-stretch">The Second Stretch</h1>
+<p>Our meal at Marea was delicious, though it was hard to grasp the culinary theme or vision from the dishes we got. Most items alone were fantastic, and the use of eggplant was innovative and thought-provoking. We followed the NYT suggestion and stayed away from any courses after the Primi section of the menu. The service, including the accommodations for celiac disease, was amazing and elevated the experience. If I returned, I would order many of the same dishes and try another pasta, since that gluten-free pasta did not let down my expectations.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction We went to Marea to celebrate my birthday a few days late. We spent only part of the day in New York and had high tea just before going to the restaurant. It turns out that high tea actually involves a lot of food, so this might have hampered our enjoyment of the food (as opposed to if we had gone on empty stomachs). Regardless, we thoroughly enjoyed everything we did eat at Marea.]]></summary></entry><entry><title type="html">Infinite Winter - Stage 2</title><link href="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2020/12/26/infinite-jest-2/" rel="alternate" type="text/html" title="Infinite Winter - Stage 2" /><published>2020-12-26T00:00:00-08:00</published><updated>2020-12-26T00:00:00-08:00</updated><id>sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2020/12/26/infinite-jest-2</id><content type="html" xml:base="sadhikamalladi.github.io//https://sadhikamalladi.github.io/blog/2020/12/26/infinite-jest-2/"><![CDATA[<h1 id="the-second-stretch">The Second Stretch</h1>
 
 <p>I see why Infinite Summer chose this pacing for the book. The second stretch took a lot longer than was scheduled because we added a new member to our book club (yay!). Some of my thoughts below were synthesized in conversation with them. I think this made me pause to reflect much more on what I’m getting out of this book. Although some pages can be quite difficult to read (either for their winding style or for their heavy emotional content), I ultimately didn’t want to put this book down. Which is sometimes not even true of books that are clearer in their writing style.</p>
 
