@@ -1,0 +1,11 @@
+{
+  "name": "sadhikamalladi.github.io",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
+  }
+}

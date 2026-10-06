@@ -13,12 +13,12 @@ body .content {
   margin-bottom: 120px;
 }
 p.caption {
-    color: gray;
-    font-size: 90%;
-    line-height: 1.5
+  color: gray;
+  font-size: 90%;
+  line-height: 1.5;
 }
 a {
-    color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.8);
 }
 a:hover {
   text-decoration: none;
@@ -41,7 +41,7 @@ h1 {
   display: none;
 }
 .wrap {
-  max-width:700px;
+  max-width: 700px;
   margin: 0 auto;
 }
 .mono {
@@ -74,25 +74,25 @@ h1 {
   font-family: -apple-system, Helvetica, arial, sans-serif;
 }
 .front-matter .bylines {
-    display: flex;
+  display: flex;
 }
 .front-matter .bylines .byline {
   float: left;
 }
 .front-matter .bylines .byline h3,
 .front-matter .bylines .byline p {
-    margin-left: 50px;
-    margin-top: 0;
-    margin-bottom: 0;
+  margin-left: 50px;
+  margin-top: 0;
+  margin-bottom: 0;
   font-family: -apple-system, Helvetica, arial, sans-serif;
 }
 .front-matter .bylines .author h3,
 .front-matter .bylines .author p {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-family: -apple-system, Helvetica, arial, sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: -apple-system, Helvetica, arial, sans-serif;
 }
-    
+
 .front-matter .bylines h3 {
   font-size: 11px;
   text-transform: uppercase;
@@ -103,8 +103,8 @@ h1 {
   line-height: 1.6em;
 }
 .front-matter .bylines .byline .author {
-    float:left;
-    padding-right: 20px
+  float: left;
+  padding-right: 20px;
 }
 .article {
   font-size: 15px;
@@ -169,7 +169,6 @@ h1 {
 #blog {
   margin-top: 80px;
   margin-bottom: 100px;
-
 }
 #blog #intro {
   font-size: 14px;
@@ -181,10 +180,10 @@ h1 {
   margin-bottom: 30px;
 }
 #blog b {
-    font-size: inherit
+  font-size: inherit;
 }
 #blog a {
-    target-new: tab
+  target-new: tab;
 }
 #blog .quote p {
   margin-bottom: 5px;
@@ -235,4 +234,7 @@ hr {
     margin: 0 7px;
   }
 }
-img + em { 	display: block; text-align: center; }
+img + em {
+  display: block;
+  text-align: center;
+}
