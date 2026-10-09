@@ -15,12 +15,10 @@ class Page(HTMLParser):
         super().__init__()
         self.path, self.ids, self.refs, self.nav_links = path, set(), [], 0
         self.brands, self.stylesheets = [], []
-        self.footer_count = 0
         self.nav_depth = 0
         self.feed(path.read_text())
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
-        if tag == 'footer': self.footer_count += 1
         if a.get('id'):
             if a['id'] in self.ids: errors.append(f'{self.path.relative_to(root)}: duplicate ID {a["id"]}')
             self.ids.add(a['id'])
@@ -52,9 +50,6 @@ for path,page in parsed.items():
     stylesheets = [local_target(path, href) for href in page.stylesheets]
     required_styles = [root / 'css/site.css']
     if path == root / 'lab/research/index.html': required_styles.append(root / 'css/research.css')
-    if path == root / 'blog/batch-size/index.html': required_styles.append(root / 'css/interactive-shell.css')
-    if path == root / 'blog/batch-size/index.html' and page.footer_count:
-        errors.append('The website copy of the batch-size article must not contain a footer')
     for stylesheet in required_styles:
         if stylesheets.count(stylesheet) != 1:
             errors.append(f'{path.relative_to(root)}: expected one link to {stylesheet.relative_to(root)}')

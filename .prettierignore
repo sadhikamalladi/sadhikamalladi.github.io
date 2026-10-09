@@ -5,5 +5,4 @@ image/
 *.map
 node_modules/
 batch-size-blog/
-blog/batch-size/batch-size/
 scripts/*.py

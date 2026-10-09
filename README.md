@@ -12,7 +12,7 @@ python3 scripts/preview.py
 
 Open `http://127.0.0.1:8765/` for the homepage. The preview server disables browser caching so edits appear on reload.
 
-You can also open `index.html` directly in Safari or another browser. Pages load their formatting from shared CSS files through relative links. Images and navigation use relative paths, including explicit `index.html` links between pages. Use the local server above for the complete interactive paper experience.
+You can also open `index.html` directly in Safari or another browser. Pages load their formatting from shared CSS files through relative links. Images and navigation use relative paths, including explicit `index.html` links between pages.
 
 ## Site structure
 
@@ -20,7 +20,7 @@ You can also open `index.html` directly in Safari or another browser. Pages load
 - `/lab/research/`: research themes and selected publications.
 - `/lab/about/`: group introduction, founder profile, and recruitment links.
 - `/blog/`: research essays and interactive articles, with a link to Under the Assumptions on Substack.
-- `/blog/batch-size/`: the self-contained interactive paper essay.
+- `/blog/batch-size/`: compatibility redirect to <https://batch-size-scaling.com/>. The Writing page links directly to the external article.
 - `/`: the homepage, with Sadhika's bio and links to the other pages.
 - Existing publication, recruitment, teaching, and dated post URLs remain available.
 
@@ -30,9 +30,9 @@ The three primary navigation links are Research, Writing, and About. Headers and
 
 ## Adding a post
 
-Write an HTML page in `blog/<year>/<month>/<day>/<slug>/index.html`. Use an existing post as a page template, keep the shared navigation and stylesheet, and set its title, description, and canonical URL. Put its images and other assets in a dedicated folder. Add its link, date, authors, and summary to `blog/index.html`, and update `feed.xml` and `sitemap.xml`. Interactive articles can carry their own styles and scripts, as the batch-size article does.
+Write an HTML page in `blog/<year>/<month>/<day>/<slug>/index.html`. Use an existing post as a page template, keep the shared navigation and stylesheet, and set its title, description, and canonical URL. Put its images and other assets in a dedicated folder. Add its link, date, authors, and summary to `blog/index.html`, and update `feed.xml` and `sitemap.xml`. Externally hosted articles can be linked directly from the Writing page without copying their files into this repository.
 
-The interactive paper retains the original project's measured data, simulations, and upstream licenses. Its source is <https://github.com/dangxingyu/batch-size-blog>; the current copy is from commit `2e4b36fd145e21253e594a0bf081a1617dd86eeb`. The original cloned repository in `batch-size-blog/` is a local reference and is excluded from this repository. Vendor code is excluded from formatting.
+The batch-size article is hosted at <https://batch-size-scaling.com/> and is maintained in <https://github.com/dangxingyu/batch-size-blog>. The original cloned repository in `batch-size-blog/` is a local reference and is excluded from this repository. Vendor code is excluded from formatting.
 
 ## Check changes
 
