@@ -1,0 +1,112 @@
+{
+  "source_commit": "462dc51a3bc7393143d555ad5e564e17ea71dcce",
+  "files": [
+    {
+      "path": "data/track3_batch_size_results.csv",
+      "sha256": "45494748abfdc8edef469f15a0ef9a0a66abe7407168f03674047d428a8e7ad6"
+    },
+    {
+      "path": "figure6_data/branch_endpoints.csv",
+      "sha256": "3524261d93ffc07d69dacf52defeebfd60781d62969684ef30728864d4b2529e",
+      "source_revision": "83b7052"
+    },
+    {
+      "path": "figure6_data/penalty_removed.csv",
+      "sha256": "8c7dbd3b37c99074da0647d1f449c242585468c774ff9c3684facc72dd6633ea",
+      "source_revision": "83b7052"
+    },
+    {
+      "path": "data/muonw_batch_transfer_raw_results.csv",
+      "sha256": "8ed4f4ac28ffab3c5caa5ddee260c512fd746ea4c093777b932aea6c4f0f3287"
+    },
+    {
+      "path": "data/cifar5m_untied_batch_transfer_results.csv",
+      "sha256": "6a21f0ec9b45667bdc4e270aeedc798bd27b5be48a0bd94f5a978ba7f02d2813"
+    },
+    {
+      "path": "figures/signsgd_cnr_scaling_b09/training.csv",
+      "sha256": "894ba5118e493e859b733deaaf5a03908440e064b54f95706569635e7a2bb19c"
+    },
+    {
+      "path": "figures/signsgd_cnr_scaling_b09/protocol.json",
+      "sha256": "b82af44418875589730bc9f0e4c2aabf02c4462d096802c468fe4732572365c7"
+    },
+    {
+      "path": "data/cifar5m_retune_results.csv",
+      "sha256": "ebdf487beafe310c7ce5cff4ca893bdc2f20fc426cfd0f558d0623d45cdd8e88"
+    },
+    {
+      "path": "scripts/plot_muonw_transfer_comparison.py",
+      "sha256": "c4ffc3d783a2ae49b08e6a9fe97f1e0a57b8f252ae8349185589d66f50ab1535"
+    },
+    {
+      "path": "figure6_data/base_run_curve.csv",
+      "sha256": "8ace2269f855d5fb9715ae083be7d169f3c74c99ff29f22d4b8810bc74989457",
+      "source_revision": "83b7052"
+    },
+    {
+      "path": "figure6_data/branch_curves.csv",
+      "sha256": "32bd55ebf8d443a08a48c1bf16fddf6201a7b98535aa38bab876e2ac47fed70f",
+      "source_revision": "83b7052"
+    }
+  ],
+  "notes": [
+    "Optimizer losses are reported medians where multiple runs exist; HyperBall largely has one run per point.",
+    "Min/max are observed ranges, not confidence intervals.",
+    "Endpoint penalties are in 1e-3 nats, evaluated on 10.5M held-out tokens.",
+    "No missing measurements are interpolated."
+  ],
+  "scaling_rules": {
+    "measurements": 4752,
+    "llm": {
+      "rules": 216,
+      "runs": 864,
+      "seed": 1,
+      "metric": "terminal token-averaged validation loss"
+    },
+    "cifar": {
+      "rules": 648,
+      "runs": 3888,
+      "seed": 42,
+      "metric": "per-example validation loss averaged over final ten evaluations"
+    },
+    "selection": "mean regret over target batches",
+    "scope": "All original single-seed complete scaling-rule grids, with the paper full-retuning reference points kept separately. Rule rankings and common-rule selection retain the original all-target grid-regret definition. No auxiliary weight-decay extensions or confidence intervals.",
+    "display_gap": "Original-grid validation loss minus the lowest recorded loss at the same batch across the original grid and available paper full-retuning medians. Differences are naturally nonnegative without clipping. Both loss views use linear y axes; displayed means weight every target batch equally. CIFAR 64/128 use grid minima because no independent retuning baseline was measured."
+  },
+  "signsgd_cnr": {
+    "curves": 3,
+    "endpoints": 27,
+    "cnrs": [
+      0.001,
+      0.03,
+      1.0
+    ],
+    "momentum": 0.9,
+    "sample_budget": 4096,
+    "metric": "Monte Carlo expected terminal loss; independently tuned learning rate per batch",
+    "source": "figures/signsgd_cnr_scaling_b09/training.csv"
+  },
+  "directional_branching": {
+    "source_revision": "83b7052",
+    "checkpoints": [
+      1000,
+      2000,
+      3000,
+      4000,
+      5000,
+      6000,
+      7000,
+      8000,
+      9000,
+      10000,
+      11000,
+      12000
+    ],
+    "branch_curves": 93,
+    "curve_points": 3061,
+    "endpoints": 93,
+    "recovery_measurements": 69,
+    "display": "Every available measured checkpoint and top-k branch. Missing runs remain absent."
+  }
+}

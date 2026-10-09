@@ -1,0 +1,131 @@
+/* One model, two update rules; keep the definitions beside the equations. */
+.nqm-equation-panel {
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: 14px 24px;
+  padding: 16px 18px 8px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.nqm-equation-panel > h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.nqm-equation-panel .nqm-model-equations {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.nqm-equation-panel .nqm-model-equations > div + div {
+  margin-top: 0;
+}
+
+.nqm-equation-panel .nqm-model-row {
+  display: grid;
+  grid-template-columns: 126px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.nqm-equation-panel .update-step {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.nqm-equation-panel .update-equation {
+  padding-block: 5px;
+}
+
+.nqm-equation-panel .update-equation :is(math, .blog-math) {
+  margin: 0;
+  font-size: 19px;
+  text-align: left;
+}
+
+.nqm-equation-panel .nqm-update-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.nqm-equation-panel .nqm-update-comparison > div {
+  min-width: 0;
+}
+
+.nqm-equation-panel .nqm-update-comparison .update-step {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.nqm-equation-panel .nqm-model-notation {
+  padding: 0 0 0 24px;
+  border-top: 0;
+  border-left: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.nqm-equation-panel .nqm-model-notation dl {
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 8px 12px;
+}
+
+.nqm-equation-panel .nqm-model-notation :is(math, .blog-math) {
+  font-size: 16px;
+}
+
+.nqm-equation-panel .nqm-model-assumptions {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.nqm-equation-panel .nqm-model-assumptions :is(math, .blog-math) {
+  font-size: 16px;
+}
+
+@container article (max-width: 740px) {
+  .nqm-equation-panel {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 14px 16px 8px;
+  }
+
+  .nqm-equation-panel .nqm-model-notation {
+    padding: 12px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
+@container article (max-width: 480px) {
+  .nqm-equation-panel .nqm-model-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .nqm-equation-panel .nqm-update-comparison {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .nqm-equation-panel .nqm-update-comparison > div {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nqm-equation-panel .update-equation :is(math, .blog-math) {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,450 @@
+/* Compact the shared experiment by its available width, including article rails. */
+#geometry-lab {
+  container: geometry / inline-size;
+}
+
+#geometry-lab > .panel-top {
+  gap: 10px 18px;
+  margin-bottom: 12px;
+}
+
+#geometry-lab h4 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+#geometry-lab .geometry-controls {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  padding: 10px 0 12px;
+  margin-bottom: 14px;
+}
+
+#geometry-lab .geometry-sliders {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#geometry-lab .geometry-controls .control {
+  margin: 0;
+}
+
+#geometry-lab .geometry-controls .control label {
+  gap: 4px 8px;
+  font-size: 14px;
+  line-height: 1.35;
+  margin-bottom: 2px;
+}
+
+#geometry-lab .geometry-controls .control output,
+#geometry-lab .geometry-controls .control label .blog-math {
+  font-size: 14px;
+}
+
+#geometry-lab .geometry-controls input[type=range] {
+  margin: 8px 0;
+}
+
+#geometry-lab .geometry-controls .range-ends {
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+#geometry-lab .geometry-controls .phase-starts,
+#geometry-lab .geometry-controls > .geometry-transport {
+  grid-column: 1;
+  grid-row: auto;
+  margin: 0;
+}
+
+#geometry-lab .geometry-controls .phase-starts {
+  gap: 6px;
+}
+
+#geometry-lab .geometry-controls .phase-starts > span {
+  width: auto;
+  margin: 0 5px 0 0;
+  font-size: 14px;
+}
+
+#geometry-lab .geometry-controls .phase-starts button,
+#geometry-lab .geometry-controls .geometry-transport .transport .button,
+#geometry-lab .projection-switch button,
+#geometry-lab .preset-controls button {
+  min-height: 32px;
+  padding: 5px 9px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+#geometry-lab .geometry-controls .geometry-transport .transport {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 8px;
+  padding: 5px 7px;
+}
+
+#geometry-lab .geometry-controls .geometry-transport .sim-speed {
+  margin-left: auto;
+  font-size: 14px;
+}
+
+#geometry-lab .geometry-controls .geometry-transport .sim-speed select {
+  min-height: 32px;
+  width: 54px;
+  padding: 3px 5px;
+  font-size: 14px;
+}
+
+#geometry-lab .geometry-controls .geometry-transport .transport #sim-progress {
+  flex: 0 1 auto;
+  width: auto;
+  margin: 0 0 0 auto;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+#geometry-lab .geometry-controls .geometry-transport .share-feedback:empty {
+  margin: 0;
+  padding: 0;
+}
+
+#geometry-lab .geometry-views {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+}
+
+#geometry-lab .landscape-view-heading,
+#geometry-lab .geometry-view-heading {
+  align-items: center;
+  flex-direction: row;
+  gap: 8px 12px;
+  margin-bottom: 8px;
+}
+
+#geometry-lab .projection-switch img {
+  width: 16px;
+  height: 16px;
+}
+
+#geometry-lab .geometry-map {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+#geometry-lab .geometry-map-guide {
+  margin-bottom: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+#geometry-lab .geometry-map .phase-context {
+  gap: 4px 12px;
+  min-height: 18px;
+  margin-bottom: 6px;
+}
+
+#geometry-lab .geometry-map .phase-context p,
+#geometry-lab .geometry-map .phase-context > span,
+#geometry-lab .geometry-map .check {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+#geometry-lab .geometry-map .phase-scroll {
+  padding: 3px;
+}
+
+#geometry-lab .geometry-map .phase-map {
+  grid-template-columns: 20px 32px repeat(13, minmax(18px, 1fr));
+  grid-template-rows: 20px 18px repeat(8, 18px);
+  gap: 2px;
+  min-width: 314px;
+  min-height: 200px;
+}
+
+#geometry-lab .geometry-map .phase-cell {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 18px;
+  padding: 0;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+#geometry-lab .geometry-map .phase-axis,
+#geometry-lab .geometry-map .phase-column,
+#geometry-lab .geometry-map .phase-row {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+#geometry-lab .geometry-map .phase-cell > span {
+  font-size: 10px;
+  line-height: 1;
+  padding: 1px 2px;
+}
+
+#geometry-lab .geometry-map .phase-axis .blog-math {
+  font-size: 14px;
+}
+
+#geometry-lab .geometry-map .phase-row {
+  left: 22px;
+  padding-right: 4px;
+}
+
+#geometry-lab .geometry-map .phase-axis-y::before {
+  right: -36px;
+}
+
+#geometry-lab .geometry-map .phase-axis-x span {
+  left: 56px;
+}
+
+#geometry-lab .geometry-map .phase-legend {
+  gap: 4px 12px;
+  margin-top: 8px;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+#geometry-lab .geometry-map .phase-legend > span:last-child {
+  font-size: 12px;
+}
+
+#geometry-lab .arena-caption {
+  padding: 5px 8px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+#geometry-lab .camera-toolbar {
+  padding: 4px 8px;
+  min-height: 0;
+}
+
+#geometry-lab .camera-modes button,
+#geometry-lab .camera-toolbar output {
+  min-height: 28px;
+  padding: 3px 6px;
+  font-size: 13px;
+}
+
+#geometry-lab .geometry-paths .landscape-three-d {
+  min-height: 0;
+}
+
+#geometry-lab .geometry-paths .landscape-three-d .hero-plot,
+#geometry-lab .geometry-paths .landscape-three-d #hero-canvas {
+  height: 180px;
+}
+
+#geometry-lab .geometry-paths .landscape-three-d .hero-axis-key {
+  min-height: 0;
+  gap: 10px;
+  padding: 4px 6px;
+}
+
+#geometry-lab .coordinate-compass {
+  width: 72px;
+  height: 44px;
+}
+
+#geometry-lab .coordinate-compass .blog-math {
+  font-size: 16px;
+}
+
+#geometry-lab .hero-axis-key > .coordinate-definitions {
+  gap: 8px 14px;
+}
+
+#geometry-lab .coordinate-definitions strong,
+#geometry-lab .coordinate-definitions small {
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+#geometry-lab .coordinate-definitions .blog-math {
+  font-size: 16px;
+}
+
+#geometry-lab .geometry-paths .landscape-two-d #landscape,
+#geometry-lab .arena canvas#landscape {
+  height: 232px;
+}
+
+#geometry-lab .arena-legend {
+  flex-wrap: wrap;
+  gap: 7px 14px;
+  padding: 5px 8px 7px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+#geometry-lab .arena-legend .axis-key {
+  flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Outcomes stay beside the experiment; each result follows its own plot. */
+#geometry-lab .landscape-title-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px 9px;
+  min-width: 0;
+}
+
+#geometry-lab .geometry-winner {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in srgb, currentColor 55%, transparent);
+  border-left: 4px solid currentColor;
+  border-radius: 4px;
+  background: color-mix(in srgb, currentColor 16%, var(--surface));
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+#geometry-lab .geometry-paths > .sim-loss-panel,
+#geometry-lab .geometry-map > .geometry-expected {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+#geometry-lab .geometry-paths > .sim-loss-panel {
+  padding-inline: 0;
+}
+
+#geometry-lab .sim-loss-panel .figure-axis-heading {
+  gap: 8px;
+  min-height: 0;
+  margin-bottom: 4px;
+}
+
+#geometry-lab .sim-loss-panel .figure-axis-name,
+#geometry-lab .sim-loss-panel .figure-axis-unit,
+#geometry-lab .sim-loss-panel .figure-legend {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+#geometry-lab .sim-loss-panel .figure-legend {
+  gap: 6px 16px;
+  margin-top: 4px;
+}
+
+#geometry-lab .sim-loss-panel #sim-loss {
+  display: block;
+  width: 100%;
+  height: 150px;
+  min-height: 0;
+}
+
+#geometry-lab .geometry-map > .geometry-expected {
+  display: block;
+}
+
+#geometry-lab .geometry-expected .eyebrow {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 14px;
+}
+
+#geometry-lab .risk-label,
+#geometry-lab .risk-label small {
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+#geometry-lab .risk-label .blog-math {
+  font-size: 14px;
+}
+
+#geometry-lab .risk-track {
+  height: 10px;
+  margin-bottom: 10px;
+}
+
+#geometry-lab .geometry-expected .sandbox-takeaway {
+  margin: 8px 0 0;
+  padding: 9px 12px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+#geometry-lab > .tuning-note {
+  margin: 14px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+#geometry-lab > .tuning-note p,
+#geometry-lab > .tuning-note .pseudo-equation {
+  margin: 0 0 6px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+@container geometry (min-width: 700px) {
+  #geometry-lab .geometry-views {
+    grid-template-columns: minmax(0, .98fr) minmax(0, 1.02fr);
+    gap: 18px;
+  }
+}
+
+@container geometry (max-width: 699px) {
+  #geometry-lab .geometry-sliders {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  #geometry-lab .geometry-paths .landscape-three-d .hero-plot,
+  #geometry-lab .geometry-paths .landscape-three-d #hero-canvas {
+    height: 220px;
+  }
+
+  #geometry-lab .geometry-paths .landscape-two-d #landscape,
+  #geometry-lab .arena canvas#landscape {
+    height: 272px;
+  }
+}
+
+@media (max-width: 760px), (pointer: coarse) {
+  #geometry-lab .geometry-controls .phase-starts button,
+  #geometry-lab .geometry-controls .geometry-transport .transport .button,
+  #geometry-lab .geometry-controls .geometry-transport .sim-speed select,
+  #geometry-lab .projection-switch button,
+  #geometry-lab .preset-controls button,
+  #geometry-lab .camera-modes button {
+    min-height: 44px;
+  }
+
+  #geometry-lab .geometry-map .phase-map {
+    grid-template-columns: 22px 34px repeat(13, minmax(44px, 1fr));
+    grid-template-rows: 20px 18px repeat(8, 44px);
+    min-width: 656px;
+  }
+
+  #geometry-lab .geometry-map .phase-cell {
+    min-height: 44px;
+  }
+
+  #geometry-lab .geometry-map .phase-row {
+    left: 24px;
+  }
+}
+
+/* The live-loss title already names the plotted quantity. */
+.geometry-paths .sim-loss-panel .figure-axis-name::before { content: none; }

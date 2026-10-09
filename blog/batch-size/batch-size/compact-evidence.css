@@ -1,0 +1,223 @@
+/* Compact evidence widgets; all controls and measurement notes remain available. */
+:is(#rule-lab, #optimizer-comparison, #branching) {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+:is(#rule-lab, #optimizer-comparison, #branching) .panel-top {
+  min-height: 0;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+:is(#rule-lab, #optimizer-comparison, #branching) :is(h3, h4) {
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+:is(#rule-lab, #optimizer-comparison, #branching) :is(.segmented button, select, .rule-range-reset, .rule-batch-action button, .branch-back) {
+  min-height: 32px;
+  padding: 5px 9px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+:is(#rule-lab, #optimizer-comparison, #branching) :is(.figure-axis-name, .figure-axis-unit, .figure-axis-reference, .figure-x-axis, .figure-legend, .chart-top, .check, .board-head, .range-ends) {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+:is(#rule-lab, #optimizer-comparison) .figure-axis-heading {
+  min-height: 0;
+  gap: 8px 12px;
+  margin-bottom: 4px;
+}
+
+:is(#rule-lab, #optimizer-comparison) .figure-axis-quantity {
+  min-height: 24px;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+:is(#rule-lab, #optimizer-comparison) .figure-axis-quantity :is(math, .blog-math) { font-size: 18px; }
+:is(#rule-lab, #optimizer-comparison) .figure-x-axis { margin: 4px 0 8px; gap: 8px; }
+:is(#rule-lab, #optimizer-comparison) .figure-x-axis :is(math, .blog-math) { font-size: 16px; }
+:is(#rule-lab, #optimizer-comparison) .figure-legend { gap: 6px 14px; margin-bottom: 8px; }
+:is(#rule-lab, #optimizer-comparison) .figure-legend .trace-swatch { width: 26px; }
+:is(#rule-lab, #optimizer-comparison) .legend-line { width: 26px; }
+
+:is(#rule-lab, #optimizer-comparison, #branching) > :is(details, .panel-foot) {
+  margin-top: 12px;
+  padding-top: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* One compact row of presets precedes the curve and its rule editor. */
+#rule-lab > .rule-lab-header { flex-direction: row; justify-content: flex-start; align-items: center; gap: 16px; }
+#rule-lab #rule-task-tabs { width: auto; padding: 3px; gap: 2px; }
+#rule-lab #rule-task-tabs button { flex: none; min-height: 32px; padding: 5px 12px; font-size: 13px; line-height: 1.4; font-weight: 500; }
+#rule-lab .rule-search-guide { gap: 10px; padding: 0; margin-bottom: 12px; border: 0; font-size: 14px; line-height: 1.4; }
+#rule-lab .rule-workspace { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+#rule-lab .rule-chart-pane { display: block; position: static; min-width: 0; }
+#rule-lab .rule-chart-view { position: static; padding-top: 0; border: 0; box-shadow: none; }
+#rule-lab .rule-inspector { display: block; padding: 12px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+#rule-lab .rule-inspector h4 { font-size: 14px; margin: 0 0 6px; line-height: 1.35; }
+#rule-lab .rule-preset-section { padding-bottom: 10px; margin-bottom: 10px; }
+#rule-lab .rule-presets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin: 0; padding: 0; border: 0; }
+#rule-lab .rule-presets button { min-height: 32px; padding: 5px 6px; font-size: 12px; line-height: 1.25; }
+#rule-lab .rule-preset-description { margin-top: 6px; font-size: 13px; line-height: 1.4; }
+#rule-lab .rule-builder { display: flex; flex-direction: column; gap: 4px; }
+#rule-lab .rule-builder label { display: grid; grid-template-columns: minmax(0, 1fr) 96px 80px; gap: 6px; align-items: center; padding: 0; border: 0; font-size: 12px; line-height: 1.3; }
+#rule-lab .rule-builder label > span { grid-row: auto; min-height: 0; font-size: 12px; line-height: 1.3; gap: 4px; }
+#rule-lab .rule-builder select { grid-column: auto; grid-row: auto; min-height: 32px; padding: 4px 5px; font-size: 12px; }
+#rule-lab .rule-coordinate-formula { grid-column: auto; grid-row: auto; justify-self: end; padding-right: 0; }
+#rule-lab .rule-builder :is(math, .blog-math) { font-size: 14px; }
+#rule-lab .rule-recipe { margin: 5px 0 8px; font-size: 12px; line-height: 1.35; }
+#rule-lab .rule-recipe :is(math, .blog-math) { font-size: 14px; }
+#rule-lab .rule-metrics { display: block; border-left: 0; border-top: 1px solid var(--line); padding: 8px 0 0; }
+#rule-lab .rule-metrics > div { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 0 0 3px; }
+#rule-lab .rule-metrics span { font-size: 12px; line-height: 1.35; }
+#rule-lab .rule-metrics strong { display: inline; font-size: 15px; line-height: 1.3; margin: 0; }
+#rule-lab .rule-metrics p { margin-top: 6px; font-size: 12px; line-height: 1.4; }
+#rule-lab .rule-range-controls { margin: 8px 0; padding-top: 6px; }
+#rule-lab .rule-range-toolbar { gap: 8px; margin: 0; font-size: 12px; }
+#rule-lab .rule-range-actions { gap: 5px; }
+#rule-lab .rule-transport { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; margin: 8px 0 0; }
+#rule-lab .rule-transport > label { grid-column: 1; grid-row: 1; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; font-size: 13px; }
+#rule-lab #rule-target-batch { font-size: 12px; }
+#rule-lab .rule-transport input { margin: 5px 0; }
+#rule-lab .rule-batch-ticks { grid-column: 1; grid-row: 2; padding: 0; margin: 0; }
+#rule-lab .rule-batch-ticks button { min-height: 28px; padding: 3px 2px; font-size: 12px; }
+#rule-lab .rule-batch-action { grid-column: 2; grid-row: 1 / 3; align-self: end; margin: 0; }
+#rule-lab .rule-batch-action button { white-space: normal; max-width: 116px; font-size: 12px; }
+#rule-lab .rule-coverage { margin: 0 0 8px; font-size: 12px; line-height: 1.4; }
+
+/* Rankings, the leaderboard and the pairwise comparison form one instrument. */
+#optimizer-comparison .panel-top > div:first-child { min-width: 0; }
+#optimizer-comparison .ranking-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+#optimizer-comparison .leaderboard { min-width: 0; padding: 10px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+#optimizer-comparison .board-head { margin-bottom: 6px; gap: 6px; font-size: 12px; }
+#optimizer-comparison .rank-row { min-height: 30px; padding: 5px 6px; gap: 5px; font-size: 13px; line-height: 1.35; }
+#optimizer-comparison .rank-row .rank-name { gap: 5px; }
+#optimizer-comparison .rank-row .rank-number { width: 15px; font-size: 15px; }
+#optimizer-comparison .insight { margin-top: 8px; font-size: 12px; line-height: 1.4; }
+#optimizer-comparison .batch-controls { max-width: none; padding-top: 10px; }
+#optimizer-comparison .batch-controls label { font-size: 13px; margin-bottom: 4px; }
+#optimizer-comparison .batch-controls output { font-size: 14px; }
+#optimizer-comparison .batch-controls input { margin: 8px 0; }
+#optimizer-comparison .range-ticks { margin-top: 0; }
+#optimizer-comparison .range-ticks button { min-height: 28px; padding: 3px 4px; font-size: 12px; }
+#optimizer-comparison > .pair-lab { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 10px; padding-top: 10px; }
+#optimizer-comparison > .pair-lab h4 { margin: 0 0 6px; font-size: 14px; }
+#optimizer-comparison > .pair-lab .pair-controls { gap: 4px; }
+#optimizer-comparison > .pair-lab .pair-controls label { min-width: 0; font-size: 12px; gap: 3px; }
+#optimizer-comparison > .pair-lab .pair-controls > span { padding-bottom: 6px; font-size: 12px; }
+#optimizer-comparison > .pair-lab .pair-controls select { min-height: 32px; padding: 4px 19px 4px 6px; font-size: 13px; }
+#optimizer-comparison > .pair-lab .pair-result { display: block; grid-column: auto; }
+#optimizer-comparison > .pair-lab :is(.pair-axis, .pair-axis strong, .pair-quantity, .pair-verdict) { font-size: 13px; line-height: 1.4; }
+#optimizer-comparison > .pair-lab .pair-axis { gap: 8px; }
+#optimizer-comparison > .pair-lab .pair-quantity { margin: 1px 0 2px; }
+#optimizer-comparison > .pair-lab .pair-verdict { margin: 0 0 6px; }
+#optimizer-comparison > .pair-lab .pair-note { min-width: 0; }
+#optimizer-comparison > .pair-lab .pair-note summary { font-size: 12px; line-height: 1.4; padding-bottom: 4px; }
+#optimizer-comparison > .pair-lab #pair-chart { height: 112px; min-height: 0; }
+
+/* Keep penalties next to the branch curves, with two short legend rows. */
+#branching .tiny-fraction strong { font-size: 30px; }
+#branching .tiny-fraction strong span { font-size: 18px; }
+#branching .tiny-fraction > span { font-size: 12px; margin-top: 3px; }
+#branching .intervention-controls { gap: 16px; margin: 12px 0 8px; }
+#branching .intervention-controls .control { margin-bottom: 0; }
+#branching .intervention-controls label { margin-bottom: 5px; font-size: 13px; }
+#branching .intervention-controls output { font-size: 14px; }
+#branching .intervention-controls input { margin: 8px 0; }
+#branching .intervention-controls .range-ends { margin-top: 3px; font-size: 12px; }
+#branching .intervention-controls select { min-height: 32px; padding: 5px 8px; font-size: 13px; }
+#branching .branch-trajectories { padding-block: 12px; margin-bottom: 12px; }
+#branching .branch-chart-head { gap: 10px; margin-bottom: 10px; }
+#branching .branch-chart-head h4 { font-size: 14px; }
+#branching .branch-chart-title { gap: 6px 10px; }
+#branching .branch-axis-title { gap: 8px; margin-bottom: 5px; }
+#branching .branch-axis-title :is(strong, span) { font-size: 13px; line-height: 1.4; }
+#branching .branch-x-axis { margin-top: 5px; font-size: 13px; }
+#branching .branch-comparison-layout { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+#branching .branch-curve-main .branch-legend { gap: 4px; margin-top: 8px; font-size: 12px; line-height: 1.3; }
+#branching .branch-legend-group { gap: 4px; }
+#branching .branch-legend-group > :is(span, button) { min-height: 32px; padding: 4px; gap: 5px; font-size: 12px; line-height: 1.25; }
+#branching .branch-legend-group .branch-line { width: 18px; }
+#branching .branch-chart-caption { margin-top: 6px; min-height: 0; font-size: 12px; line-height: 1.4; }
+#branching .branch-curve-protocol { margin-top: 6px; padding-top: 0; }
+#branching .branch-curve-protocol :is(summary, a) { font-size: 12px; line-height: 1.4; }
+#branching .branch-penalty-side { border-left: 0; border-top: 1px solid var(--line); padding: 12px 0 0; }
+#branching .branch-penalty-side .intervention-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+#branching .branch-penalty-side .chart-top { gap: 5px; font-size: 13px; line-height: 1.35; }
+#branching .branch-penalty-side .chart-top > span:last-child { font-size: 12px; }
+#branching .branch-penalty-side .penalty-bars { --penalty-bar-height: 120px; gap: 8px; padding-top: 8px; }
+#branching .branch-penalty-side .penalty-bars::before { top: calc(var(--penalty-bar-height) + 8px); }
+#branching .branch-penalty-side .penalty-row { gap: 8px; }
+#branching .branch-penalty-side .penalty-track { width: min(100%, 44px); }
+#branching .branch-penalty-side .penalty-label { gap: 3px; font-size: 12px; line-height: 1.3; }
+#branching .branch-penalty-side .penalty-label > strong { font-size: 13px; }
+#branching .branch-penalty-side .recovery-card { border-top: 1px solid var(--line); padding-top: 10px; }
+#branching .branch-penalty-side .recovery-card > .eyebrow { font-size: 13px; line-height: 1.35; margin-bottom: 3px; }
+#branching .branch-penalty-side .recovery-card > strong { font-size: 36px; margin: 2px 0 6px; }
+#branching .branch-penalty-side .recovery-card > strong.missing { font-size: 24px; }
+#branching .branch-penalty-side .recovery-card p { font-size: 13px; line-height: 1.4; margin-top: 6px; }
+#branching .branch-penalty-side .micro-presets { gap: 4px; margin-top: 8px; }
+#branching .branch-penalty-side .micro-presets button { min-height: 32px; padding: 4px 0; font-size: 12px; line-height: 1.3; }
+#branching > .branch-reading { max-width: none; margin: 12px 0; font-size: 13px; line-height: 1.45; }
+
+/* These queries override the older 900px rail-induced stacking breakpoint. */
+@container article (min-width: 720px) {
+  #rule-lab .rule-workspace { grid-template-columns: minmax(0, 1fr) 336px; gap: 12px 16px; }
+  #rule-lab .rule-inspector { display: contents; }
+  #rule-lab .rule-preset-section { grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 5px 10px; align-items: center; padding: 0 0 8px; margin: 0; }
+  #rule-lab .rule-preset-section h4 { grid-column: 1; grid-row: 1; margin: 0; }
+  #rule-lab .rule-presets { grid-column: 2; grid-row: 1; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  #rule-lab .rule-preset-description { grid-column: 2; grid-row: 2; margin: 0; }
+  #rule-lab .rule-chart-pane { grid-column: 1; grid-row: 2 / 4; }
+  #rule-lab .rule-editor { grid-column: 2; grid-row: 2; min-width: 0; padding-left: 14px; border-left: 1px solid var(--line); }
+  #rule-lab .rule-metrics { grid-column: 2; grid-row: 3; min-width: 0; padding-left: 14px; border-left: 1px solid var(--line); }
+  #optimizer-comparison .ranking-grid { grid-template-columns: minmax(0, 1fr) 208px; gap: 16px; }
+  #optimizer-comparison .leaderboard { border-top: 0; border-left: 1px solid var(--line); padding: 0 0 0 14px; }
+  #optimizer-comparison .batch-controls { display: grid; grid-template-columns: 92px minmax(0, 1fr); column-gap: 12px; }
+  #optimizer-comparison .batch-controls label { grid-column: 1; grid-row: 1 / 3; flex-direction: column; align-items: start; justify-content: center; gap: 2px; margin: 0; }
+  #optimizer-comparison .batch-controls input { grid-column: 2; grid-row: 1; }
+  #optimizer-comparison .batch-controls .range-ticks { grid-column: 2; grid-row: 2; }
+  #optimizer-comparison > .pair-lab { grid-template-columns: minmax(0, .95fr) minmax(0, 1.3fr) minmax(0, .75fr); gap: 12px; }
+  #branching .branch-comparison-layout { grid-template-columns: minmax(0, 1fr) 218px; gap: 16px; }
+  #branching .branch-penalty-side { border-top: 0; border-left: 1px solid var(--line); padding: 0 0 0 14px; }
+  #branching .branch-legend-baselines { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #branching .branch-legend-baselines > span:first-child { grid-column: auto; }
+  #branching .branch-legend-ranks { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  #rule-lab #rule-task-tabs button { min-height: 44px; }
+  :is(#rule-lab, #optimizer-comparison, #branching) .segmented button,
+  #rule-lab .rule-presets button,
+  #rule-lab .rule-builder select,
+  #rule-lab .rule-batch-ticks button,
+  #rule-lab .rule-batch-action button,
+  #rule-lab .rule-range-reset,
+  #optimizer-comparison .range-ticks button,
+  #optimizer-comparison > .pair-lab .pair-controls select,
+  #branching .intervention-controls select,
+  #branching .branch-back,
+  #branching .branch-legend-group > button,
+  #branching .branch-penalty-side .micro-presets button { min-height: 44px; }
+  #rule-lab .panel-top { display: flex; flex-wrap: wrap; }
+  #rule-lab .panel-top .segmented { margin-top: 0; }
+  #rule-lab .rule-builder label { grid-template-columns: minmax(0, 1fr) 112px; gap: 4px 10px; padding-block: 4px; }
+  #rule-lab .rule-builder label > span { grid-column: 1; grid-row: 1 / 3; }
+  #rule-lab .rule-builder select { grid-column: 2; grid-row: 1; }
+  #rule-lab .rule-coordinate-formula { grid-column: 2; grid-row: 2; justify-self: start; }
+  #rule-lab .rule-transport { grid-template-columns: minmax(0, 1fr); }
+  #rule-lab .rule-batch-action { grid-column: 1; grid-row: 3; }
+  #rule-lab .rule-batch-action button { max-width: none; }
+  #branching .branch-chart-head { align-items: start; flex-direction: column; }
+  #branching .branch-chart-head .segmented { align-self: stretch; }
+  #branching .branch-legend-ranks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #branching .branch-penalty-side .micro-presets { flex-direction: row; flex-wrap: wrap; gap: 4px 12px; }
+}

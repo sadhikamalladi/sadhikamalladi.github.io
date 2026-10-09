@@ -1,0 +1,120 @@
+/* Compact reading and experiments, with the controls in the same view. */
+:root { --reading-size: 15px; --artifact-font-size: 14px; --page-gutter: 24px; }
+html { scroll-padding-top: 24px; }
+body { line-height: 1.5; }
+h2, .chapter-head h2, .closing h2 { font-size: 20px; line-height: 1.3; }
+h3, .rule-candidates h3, .directional-comparison h3 { font-size: 16px; line-height: 1.35; }
+.hero h1 { font-size: 28px; }
+.author-list { gap: 12px 20px; margin-top: 16px; font-size: 14px; }
+.paper-actions { margin-top: 12px; gap: 8px; }
+.hero .paper-button, .paper-actions .theme-toggle { min-height: 36px; padding: 7px 12px; font-size: 14px; }
+.chapter { padding-block: 28px 12px; }
+.dark-chapter, .direction-chapter { padding-block: 28px 12px; }
+.essay-prose, .dark-chapter .essay-prose { margin-bottom: 18px; line-height: 1.55; }
+.essay-prose p + p { margin-top: 12px; }
+.question-row { margin-block: 16px 12px; }
+.article-intro .opening-question { padding: 14px 16px 10px; }
+.takeaway-box { padding: 14px 18px; }
+.takeaway-list p { line-height: 1.5; }
+.light-panel, .sandbox, .cnr-paper-panel { padding: 16px; }
+.light-panel .panel-top, .sandbox .panel-top { gap: 10px 14px; margin-bottom: 12px; min-height: 0; }
+.light-panel .panel-top h3, .sandbox .panel-top h3 { margin: 0; font-size: 16px; line-height: 1.35; }
+.light-panel .segmented, .sandbox .segmented { padding: 3px; gap: 2px; }
+.light-panel .segmented button, .sandbox .segmented button { min-height: 32px; padding: 5px 10px; font-size: 14px; }
+.light-panel .component-copy, .sandbox .component-copy,
+.light-panel .small-text, .sandbox .small-text,
+.light-panel details, .light-panel summary,
+.sandbox details, .sandbox summary, .panel-foot { font-size: 14px; line-height: 1.5; }
+.light-panel details, .sandbox details { margin-top: 12px; padding-top: 10px; }
+.panel-foot { margin-top: 12px; padding-top: 10px; gap: 8px 16px; }
+.figure-axis-heading { gap: 8px 12px; margin-bottom: 6px; }
+.figure-axis-name, .figure-axis-unit, .figure-axis-reference,
+.figure-legend, .legend, .arena-legend { font-size: 14px; line-height: 1.4; }
+.figure-axis-quantity { margin-top: 2px; min-height: 30px; }
+.figure-axis-quantity .blog-math { font-size: 19px; }
+.figure-x-axis, .cnr-paper-panel .cnr-x-label.figure-x-axis { margin-block: 4px 8px; font-size: 14px; gap: 8px; }
+.figure-x-axis .blog-math { font-size: 16px; }
+.figure-x-axis::after { font-size: 18px; line-height: 1; }
+.figure-axis-quantity .blog-math, .figure-x-axis .blog-math { line-height: 1.2; }
+.figure-legend .blog-math { font-size: 14px; line-height: 1.2; }
+.figure-legend, .legend { gap: 6px 14px; }
+:is(#rule-atlas, #ranking-chart, #pair-chart, #cnr-paper-chart, #scaling-chart, #branch-trajectory-chart, #sim-loss) text { font-size: 13px; }
+.control { margin-bottom: 14px; }
+.control label, .batch-controls label { margin-bottom: 6px; font-size: 14px; line-height: 1.4; }
+.control output, .batch-controls output { font-size: 14px; }
+input[type=range] { margin-block: 8px; }
+.range-ends, .range-ticks { margin-top: 4px; font-size: 13px; line-height: 1.4; }
+.range-ticks button { min-height: 30px; padding: 3px 4px; font-size: 13px; }
+:is(.muon-panel, .equation-panel) { gap: 8px 18px; margin-top: 12px; padding: 14px 16px; }
+:is(.muon-notation, .equation-notation) { padding-left: 18px; font-size: 14px; }
+:is(.muon-update, .equation-steps) > div + div { margin-top: 6px; }
+.candidate-derivations, .candidate-derivations .small-text { font-size: 14px; line-height: 1.5; }
+.rule-candidates { gap: 20px; margin-block: 24px; }
+.rule-candidates .rule-rate-label { margin-bottom: 10px; }
+.rule-candidates h3 { margin-bottom: 6px; }
+
+/* Narrower rails give the plots and rule editor more usable width. */
+.article-outline { font-size: 13px; line-height: 1.45; }
+.article-outline li + li { margin-top: 8px; }
+.citation-note { font-size: 13px; line-height: 1.45; }
+@media (min-width: 1280px) {
+  .article-layout { grid-template-columns: 164px minmax(0, 1080px) 208px; gap: 24px; max-width: 1540px; padding-inline: 20px; }
+  .article-outline { top: 56px; margin-top: 250px; max-height: calc(100vh - 76px); }
+}
+
+/* SignSGD: chart and one compact control column. */
+.cnr-workspace { grid-template-columns: minmax(0, 2.35fr) minmax(200px, 1fr); gap: 18px; }
+.cnr-settings { padding-left: 18px; }
+.cnr-settings .cnr-control { margin-bottom: 12px; }
+.cnr-settings .cnr-control label { font-size: 14px; }
+.cnr-settings .cnr-control output { font-size: 14px; }
+.cnr-settings .cnr-fit { padding-top: 10px; }
+.cnr-settings .cnr-fit > strong { font-size: 32px; margin-block: 4px; }
+.cnr-settings .cnr-fit p { font-size: 14px; line-height: 1.45; }
+.cnr-paper-panel .figure-axis-heading { min-height: 36px; margin-bottom: 2px; }
+.cnr-paper-panel .figure-axis-name { font-size: 14px; }
+.cnr-paper-panel .cnr-paper-legend { gap: 6px 14px; font-size: 14px; }
+.cnr-paper-panel > details { margin-top: 12px; padding-top: 10px; }
+
+/* Local movement: two short plots, followed by their shared controls. */
+.directional-local-panel > .component-intro { margin-bottom: 12px; font-size: 14px; line-height: 1.5; gap: 8px 20px; }
+.directional-local-panel > .component-intro p { line-height: 1.5; }
+.directional-local-panel > .component-intro p + p { margin-top: 8px; }
+.directional-local-panel .movement-visuals { gap: 12px 18px; }
+.directional-local-panel .figure-axis-heading { min-height: 34px; margin-bottom: 6px; font-size: 14px; line-height: 1.35; }
+.directional-local-panel .figure-axis-name { font-size: 14px; }
+.directional-local-panel #scaling-chart { height: 220px; }
+.directional-local-panel .figure-x-axis { margin-block: 4px 8px; font-size: 14px; }
+.directional-local-panel .figure-x-axis .blog-math { font-size: 16px; }
+.directional-local-panel .legend.figure-legend { font-size: 14px; line-height: 1.4; gap: 6px 12px; }
+.directional-local-panel .scaling-controls { padding-top: 12px; gap: 10px 18px; }
+.directional-local-panel .scaling-controls .control label { font-size: 14px; margin-bottom: 6px; }
+.directional-local-panel .exponent-control > .control { margin: 0; }
+.directional-local-panel .scaling-controls > .exponent-control { gap: 6px; }
+.directional-local-panel .exponent-control #scale-presets button { min-height: 32px; padding: 5px 10px; font-size: 14px; }
+.directional-local-panel .movement-value strong { font-size: 25px; line-height: 1.25; }
+.directional-local-panel .movement-value > span,
+.directional-local-panel .movement-value small { font-size: 14px; line-height: 1.4; }
+.directional-local-panel > .component-outro { margin-block: 12px; font-size: 14px; line-height: 1.5; }
+.directional-local-panel .scaling-findings { margin-block: 6px; padding-left: 22px; }
+.directional-local-panel .scaling-findings li + li { margin-top: 6px; }
+@container article (min-width: 700px) {
+  .directional-local-panel .movement-visuals { grid-template-columns: minmax(230px, .8fr) minmax(0, 1.6fr); }
+  .directional-local-panel .scaling-controls { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr); }
+  .directional-local-panel .scaling-controls .movement-readout { grid-column: 3; grid-row: 1; }
+}
+
+@media (max-width: 760px) {
+  :root { --reading-size: 15px; --artifact-font-size: 14px; --page-gutter: 18px; }
+  .hero h1 { font-size: 26px; }
+  .light-panel, .sandbox, .cnr-paper-panel { padding: 14px; }
+  .cnr-workspace { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .cnr-settings { border-left: 0; border-top: 1px solid var(--line); padding: 12px 0 0; }
+  .directional-local-panel .movement-visuals { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .directional-local-panel .scaling-controls { grid-template-columns: minmax(0, 1fr); }
+  .directional-local-panel .scaling-controls > .control:has(#scale-batch) { grid-column: 1; grid-row: 2; }
+  .directional-local-panel .scaling-controls .movement-readout { grid-column: 1; grid-row: 3; }
+  .light-panel .segmented button, .sandbox .segmented button,
+  .directional-local-panel .exponent-control #scale-presets button,
+  .range-ticks button { min-height: 44px; }
+}

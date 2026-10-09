@@ -1,0 +1,78 @@
+/* Local expected movement: two linked views and one set of controls. */
+.directional-local-panel .local-movement-layout {
+  display: block;
+  margin-top: 0;
+}
+.directional-local-panel > .component-intro {
+  display: block;
+  margin-bottom: 16px;
+}
+.directional-local-panel > .component-intro p {
+  max-width: none;
+  margin: 4px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.directional-local-panel .local-movement-comparison {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px 24px;
+  min-width: 0;
+}
+.local-movement-illustration { grid-column: 1; grid-row: 1; min-width: 0; }
+.local-movement-illustration h4 { margin: 0 0 8px; font-size: 14px; line-height: 1.4; }
+#local-movement-quadratic { display: block; width: 100%; max-width: 440px; height: auto; margin-inline: auto; }
+.directional-local-panel .local-movement-comparison .scaling-grid > div:first-child {
+  grid-column: 1;
+  grid-row: 2;
+  min-width: 0;
+}
+.directional-local-panel .local-movement-layout .figure-axis-heading { min-height: 0; gap: 8px; margin-bottom: 4px; }
+.directional-local-panel .local-movement-layout .figure-axis-name { font-size: 14px; line-height: 1.4; }
+.directional-local-panel .local-movement-layout .figure-axis-reference { margin-top: 2px; font-size: 13px; line-height: 1.4; }
+.directional-local-panel .local-movement-layout #scaling-chart { width: 100%; height: 220px; min-height: 0; }
+.directional-local-panel .local-movement-layout .figure-x-axis { gap: 8px; margin: 4px 0 8px; font-size: 14px; line-height: 1.4; }
+.directional-local-panel .local-movement-layout .legend.figure-legend,
+.directional-local-panel .local-movement-layout .legend.figure-legend > span:last-child { width: auto; gap: 6px 12px; font-size: 13px; line-height: 1.4; }
+.directional-local-panel .local-movement-comparison .scaling-controls {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.directional-local-panel .local-movement-layout .scaling-controls > .exponent-control { grid-column: 1; grid-row: 1; gap: 6px; }
+.directional-local-panel .local-movement-layout .scaling-controls > .control:has(#scale-batch) { grid-column: 1; grid-row: 2; margin: 0; }
+.directional-local-panel .local-movement-layout .scaling-controls .control label { flex-wrap: wrap; gap: 4px 6px; margin-bottom: 4px; font-size: 14px; line-height: 1.4; }
+.directional-local-panel .local-movement-layout .exponent-control #scale-presets { grid-column: auto; grid-row: auto; justify-self: start; width: auto; max-width: 100%; margin: 0; }
+.directional-local-panel .local-movement-layout .exponent-control #scale-presets button { min-height: 32px; padding: 5px 10px; gap: 6px; font-size: 13px; line-height: 1.4; }
+.directional-local-panel .local-movement-layout .scaling-controls .movement-readout { grid-column: 1; grid-row: 3; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin: 0; }
+.directional-local-panel .local-movement-layout .movement-value { padding-top: 0; }
+.directional-local-panel .local-movement-layout .movement-value > span,
+.directional-local-panel .local-movement-layout .movement-value small { font-size: 13px; line-height: 1.4; }
+@container article (min-width: 700px) {
+  .directional-local-panel .local-movement-comparison { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
+  .local-movement-illustration { padding-right: 20px; border-right: 1px solid var(--line); }
+  .directional-local-panel .local-movement-comparison .scaling-grid > div:first-child { grid-column: 2; grid-row: 1; }
+  .directional-local-panel .local-movement-comparison .scaling-controls {
+    grid-row: 2;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 20px;
+  }
+  .directional-local-panel .local-movement-comparison .scaling-controls > .exponent-control { grid-column: 1; grid-row: 1; }
+  .directional-local-panel .local-movement-comparison .scaling-controls > .control:has(#scale-batch) { grid-column: 2; grid-row: 1; }
+  .directional-local-panel .local-movement-comparison .scaling-controls > .movement-readout { grid-column: 3; grid-row: 1; }
+}
+@media (max-width: 760px), (pointer: coarse) {
+  .directional-local-panel .local-movement-layout .exponent-control #scale-presets button { min-height: 44px; }
+}
+
+.cnr-illustration { margin: 20px 0; border-radius: 8px; overflow: hidden; }
+.cnr-illustration img { display: block; width: 100%; height: auto; }
+
+#cnr-illustration-intro { margin-top: 16px; }

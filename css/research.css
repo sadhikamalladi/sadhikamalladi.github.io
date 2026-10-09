@@ -1,0 +1,120 @@
+.research-heading {
+  margin-bottom: 52px;
+}
+.research-heading .deck {
+  max-width: 760px;
+}
+.research-topic {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 66px;
+  align-items: start;
+  padding-top: 34px;
+  margin-top: 52px;
+  border-top: 2px solid var(--site-gold);
+  scroll-margin-top: 28px;
+}
+.research-topic:first-of-type {
+  margin-top: 0;
+}
+.topic-intro {
+  position: sticky;
+  top: 30px;
+}
+.topic-intro h2 {
+  font-size: 29px;
+  line-height: 1.2;
+  margin-bottom: 22px;
+}
+.topic-intro > p:not(.eyebrow) {
+  font-size: 15px;
+  color: var(--site-muted);
+  line-height: 1.8;
+}
+.research-papers {
+  min-width: 0;
+}
+.research-papers .paper-row {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--site-line);
+}
+.research-papers > .paper-row:first-child {
+  padding-top: 0;
+}
+.research-papers > .paper-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.research-papers .paper-title {
+  font-size: 18px;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  margin: 0 0 4px !important;
+}
+.research-papers .paper-venue {
+  color: var(--site-muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: inherit;
+  letter-spacing: normal;
+  white-space: nowrap;
+  margin: 0 0 0 0.5em !important;
+}
+.research-papers .paper-authors {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0 !important;
+}
+.research-papers .paper-oral {
+  display: inline-block;
+  padding: 1px 5px;
+  margin-left: 3px;
+  border-radius: 3px;
+  background: #fff3cc;
+  color: #75510b;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.research-archive-link {
+  margin-top: 42px !important;
+}
+@media (max-width: 1000px) {
+  .research-topic {
+    grid-template-columns: minmax(0, 230px) minmax(0, 1fr);
+    gap: 38px;
+  }
+}
+@media (max-width: 760px) {
+  .research-heading {
+    margin-bottom: 38px;
+  }
+  .research-topic {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    margin-top: 42px;
+    padding-top: 26px;
+  }
+  .topic-intro {
+    position: static;
+  }
+  .topic-intro h2 {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  .topic-intro > p:last-child {
+    margin-bottom: 0;
+  }
+}
+@media print {
+  .research-topic {
+    display: block;
+  }
+  .topic-intro {
+    position: static;
+    margin-bottom: 20px;
+  }
+  .research-papers .paper-row {
+    break-inside: avoid;
+  }
+}

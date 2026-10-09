@@ -1,139 +1,122 @@
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>Sadhika Malladi</title>
-    <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Writing · Malladi Lab</title>
     <meta
       name="description"
-      content="Sadhika Malladi is a PhD candidate at Princeton."
+      content="Technical blog posts, with personal musings on deep learning theory and modern practice on Sadhika Malladi's Substack."
     />
-    <!-- A decent browser will parse this fine:
-         https://webmasters.stackexchange.com/questions/92744. -->
-    <meta
-      name="keywords"
-      content="
-        machine learning,
-        statistical machine learning,
-        statistics,
-        computational statistics,
-        linear algebra,
-        statistical software,
-        deep learning,
-        computer science
-    "
-    />
-    <meta name="author" content="Sadhika Malladi" />
-
-    <link rel="shortcut icon" href="/favicon.png?v=e" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="https://sadhikamalladi.github.io/blog/" />
+    <link rel="icon" href="../image/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../css/site.css" />
     <link
-      href="https://sadhikamalladi.github.io/css/blog.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://sadhikamalladi.github.io/css/main.css"
-      rel="stylesheet"
-    />
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        jax: ['input/TeX', 'output/HTML-CSS'],
-        tex2jax: {
-          inlineMath: [ ['$', '$'] ],
-          displayMath: [ ['$$', '$$']],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-          extensions: ['color.js']
-        },
-        messageStyle: 'none',
-        'HTML-CSS': { preferredFont: 'TeX', availableFonts: ['STIX','TeX'] }
-      });
-    </script>
-
-    <script
-      src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"
-      type="text/javascript"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
-      integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq"
-      crossorigin="anonymous"
+      rel="alternate"
+      type="application/atom+xml"
+      title="Malladi Lab — Writing"
+      href="../feed.xml"
     />
   </head>
-  <body>
-    <div class="nav">
-      <ul class="wrap">
-        <li><a href="https://sadhikamalladi.github.io/index.html">Home</a></li>
-        <li>
-          <a href="https://sadhikamalladi.github.io/papers/index.html"
-            >Papers</a
-          >
-        </li>
-        <li>
-          <a href="https://sadhikamalladi.github.io/service/index.html"
-            >Teaching and Service</a
-          >
-        </li>
-        <li>
-          <a href="https://sadhikamalladi.github.io/blog/index.html"
-            >Research Blog</a
-          >
-        </li>
-        <li>
-          <a href="https://sadhikamalladi.github.io/recruitment/index.html"
-            >Student Recruitment</a
-          >
-        </li>
-      </ul>
-    </div>
-
-    <div id="blog" class="wrap">
-      <div id="posts" class="section">
-        <div class="post-row">
-          <p class="post-title">
-            <a
-              href="https://sadhikamalladi.github.io//blog/2024/07/09/dpo-infinity/"
-            >
-              The Hidden Infinity in Preference Learning
-            </a>
-          </p>
-          <p class="post-date">09 July 2024</p>
-        </div>
-        <p class="post-subtitle">
-          An illustration of how length normalization aids learning from
-          model-annotated data
+  <body class="site-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="site-brand" href="../index.html" aria-label="Malladi Lab home"
+        >Malladi Lab<span class="site-affiliation">UC San Diego</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="../lab/research/index.html">Research</a>
+        <a href="index.html" aria-current="page">Writing</a>
+        <a href="../lab/about/index.html">About</a>
+      </nav>
+    </header>
+    <main id="main" class="site-container">
+      <header class="page-heading">
+        <h1>Writing</h1>
+        <p class="deck">
+          My group's technical blog posts are collected below. On my Substack,
+          <a href="https://undertheassumptions.substack.com/"
+            >Under the Assumptions</a
+          >, I share personal musings on the role of deep learning theory in
+          modern practice.
         </p>
-        <span class="hidden">1</span>
+      </header>
 
-        <div class="post-row">
-          <p class="post-title">
-            <a
-              href="https://sadhikamalladi.github.io//blog/2024/04/04/dataselection/"
-            >
-              Using LESS Data to Tune Models
-            </a>
-          </p>
-          <p class="post-date">04 April 2024</p>
-        </div>
-        <p class="post-subtitle">Data Selection in the Era of LLMs</p>
-        <span class="hidden">2</span>
-
-        <div class="post-row">
-          <p class="post-title">
-            <a
-              href="https://sadhikamalladi.github.io//blog/2024/01/22/SDEs-ScalingRules/"
-            >
-              How to Scale Hyperparameters as Batch Size Increases
-            </a>
-          </p>
-          <p class="post-date">22 January 2024</p>
-        </div>
-        <p class="post-subtitle">
-          Understanding Optimization using Stochastic Differential Equations
-        </p>
-        <span class="hidden">3</span>
+      <section aria-label="Research writing">
+        <article class="archive-row">
+          <div class="archive-date"></div>
+          <div>
+            <h2>
+              <a href="batch-size/index.html"
+                >The Best Optimizer Depends on Batch Size</a
+              >
+            </h2>
+            <p>
+              Explore scaling rules, optimizer comparisons, and noisy-quadratic
+              simulations.
+            </p>
+            <p class="archive-authors">
+              Xingyu Dang · Kaiyue Wen · Sadhika Malladi
+            </p>
+          </div>
+        </article>
+        <article class="archive-row">
+          <div class="archive-date">
+            <time datetime="2024-07-09">9 July 2024</time>
+          </div>
+          <div>
+            <h2>
+              <a href="2024/07/09/dpo-infinity/index.html"
+                >The Hidden Infinity in Preference Learning</a
+              >
+            </h2>
+            <p>
+              An illustration of how length normalization aids learning from
+              model-annotated data
+            </p>
+            <p class="archive-authors">Sadhika Malladi</p>
+          </div>
+        </article>
+        <article class="archive-row">
+          <div class="archive-date">
+            <time datetime="2024-04-04">4 April 2024</time>
+          </div>
+          <div>
+            <h2>
+              <a href="2024/04/04/dataselection/index.html"
+                >Using LESS Data to Tune Models</a
+              >
+            </h2>
+            <p>Data Selection in the Era of LLMs</p>
+            <p class="archive-authors">Mengzhou Xia and Sadhika Malladi</p>
+          </div>
+        </article>
+        <article class="archive-row">
+          <div class="archive-date">
+            <time datetime="2024-01-22">22 January 2024</time>
+          </div>
+          <div>
+            <h2>
+              <a href="2024/01/22/SDEs-ScalingRules/index.html"
+                >How to Scale Hyperparameters as Batch Size Increases</a
+              >
+            </h2>
+            <p>
+              Understanding Optimization using Stochastic Differential Equations
+            </p>
+            <p class="archive-authors">Sadhika Malladi</p>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <span>Malladi Lab · UC San Diego</span>
+      <div class="footer-links">
+        <a href="../index.html">Sadhika Malladi</a
+        ><a href="mailto:samalladi@ucsd.edu">Contact</a
+        ><a href="../feed.xml">RSS</a>
       </div>
-    </div>
+    </footer>
   </body>
 </html>

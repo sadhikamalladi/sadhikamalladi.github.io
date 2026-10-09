@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Research · Malladi Lab</title>
+    <meta
+      name="description"
+      content="Papers on optimization, end-to-end model efficiency, data, and technical alignment and safety."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link
+      rel="canonical"
+      href="https://sadhikamalladi.github.io/lab/research/"
+    />
+    <link rel="icon" href="../../image/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../css/site.css" />
+    <link rel="stylesheet" href="../../css/research.css" />
+    <link
+      rel="alternate"
+      type="application/atom+xml"
+      title="Malladi Lab — Writing"
+      href="../../feed.xml"
+    />
+  </head>
+  <body class="site-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a
+        class="site-brand"
+        href="../../index.html"
+        aria-label="Malladi Lab home"
+        >Malladi Lab<span class="site-affiliation">UC San Diego</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Research</a>
+        <a href="../../blog/index.html">Writing</a>
+        <a href="../about/index.html">About</a>
+      </nav>
+    </header>
+
+    <main id="main" class="site-container research-page">
+      <header class="page-heading research-heading">
+        <h1>Research</h1>
+        <p class="deck">
+          Our work combines mathematical insights with rigorous experiments in
+          <a href="#optimization">optimization</a>,
+          <a href="#model-efficiency">end-to-end model efficiency</a>,
+          <a href="#data">data</a>, and
+          <a href="#alignment-safety">technical alignment and safety</a>.
+        </p>
+      </header>
+      <section
+        class="research-topic"
+        id="optimization"
+        aria-labelledby="optimization-title"
+      >
+        <header class="topic-intro">
+          <h2 id="optimization-title">Optimization</h2>
+          <p>
+            How do optimizer choice, batch size, and hyperparameters shape
+            learning? We study stochastic training dynamics and use that
+            understanding to design and analyze practical algorithms.
+          </p>
+        </header>
+        <div class="research-papers">
+          <article
+            class="paper-row"
+            id="optimization-batch-size"
+            data-paper="batch-size"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2610.08975"
+                >The Best Optimizer Depends on Batch Size</a
+              >
+              <span class="paper-venue">Preprint · In submission</span>
+            </h3>
+
+            <p class="paper-authors">
+              Xingyu Dang, Kaiyue Wen, <strong>Sadhika Malladi</strong>.
+            </p>
+          </article>
+          <article
+            class="paper-row"
+            id="optimization-momentum"
+            data-paper="momentum"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2307.15196"
+                >The Marginal Value of Momentum for Small Learning Rate SGD</a
+              >
+              <span class="paper-venue">ICLR 2024</span>
+            </h3>
+
+            <p class="paper-authors">
+              Runzhe Wang, <strong>Sadhika Malladi</strong>, Tianhao Wang,
+              Kaifeng Lyu, Zhiyuan Li.
+            </p>
+          </article>
+          <article class="paper-row" id="optimization-mezo" data-paper="mezo">
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2305.17333"
+                >Fine-Tuning Language Models with Just Forward Passes</a
+              >
+              <span class="paper-venue"
+                >NeurIPS 2023 <span class="paper-oral">Oral</span></span
+              >
+            </h3>
+
+            <p class="paper-authors">
+              <strong>Sadhika Malladi</strong>*, Tianyu Gao*, Eshaan Nichani,
+              Alex Damian, Jason D. Lee, Danqi Chen, Sanjeev Arora.
+            </p>
+          </article>
+          <article
+            class="paper-row"
+            id="optimization-kernel"
+            data-paper="kernel"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2210.05643"
+                >A Kernel-Based View of Language Model Fine-Tuning</a
+              >
+              <span class="paper-venue">ICML 2023</span>
+            </h3>
+
+            <p class="paper-authors">
+              <strong>Sadhika Malladi</strong>, Alexander Wettig, Dingli Yu,
+              Danqi Chen, Sanjeev Arora.
+            </p>
+          </article>
+          <article
+            class="paper-row"
+            id="optimization-adaptive-sdes"
+            data-paper="adaptive-sdes"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2205.10287"
+                >On the SDEs and Scaling Rules for Adaptive Gradient
+                Algorithms</a
+              >
+              <span class="paper-venue">NeurIPS 2022</span>
+            </h3>
+
+            <p class="paper-authors">
+              <strong>Sadhika Malladi</strong>*, Kaifeng Lyu*, Abhishek
+              Panigrahi, Sanjeev Arora.
+            </p>
+          </article>
+          <article
+            class="paper-row"
+            id="optimization-sgd-sdes"
+            data-paper="sgd-sdes"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2102.12470"
+                >On the Validity of Modeling SGD with Stochastic Differential
+                Equations (SDEs)</a
+              >
+              <span class="paper-venue">NeurIPS 2021</span>
+            </h3>
+
+            <p class="paper-authors">
+              Zhiyuan Li, <strong>Sadhika Malladi</strong>, Sanjeev Arora.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section
+        class="research-topic"
+        id="model-efficiency"
+        aria-labelledby="efficiency-title"
+      >
+        <header class="topic-intro">
+          <h2 id="efficiency-title">End-to-end model efficiency</h2>
+          <p>
+            Choices made at one stage affect the cost and performance of later
+            stages. We study the full pipeline, from pre-training and supervised
+            fine-tuning to reinforcement learning, distillation, and inference.
+          </p>
+          <p>
+            Our goal is to make compute, data, and memory go further while
+            developing models that are well suited to the next stage.
+          </p>
+        </header>
+        <div class="research-papers">
+          <article
+            class="paper-row"
+            id="efficiency-tailsft"
+            data-paper="tailsft"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2608.25756"
+                >TailSFT: Filtered Fine-Tuning Improves Post-Training
+                Performance</a
+              >
+              <span class="paper-venue">Preprint · In submission</span>
+            </h3>
+
+            <p class="paper-authors">
+              <strong>Sadhika Malladi</strong>, Samy Jelassi, Dylan Foster,
+              Jordan T. Ash, Akshay Krishnamurthy.
+            </p>
+          </article>
+
+          <article
+            class="paper-row"
+            id="efficiency-coverage"
+            data-paper="coverage"
+          >
+            <h3 class="paper-title">
+              <a href="https://www.arxiv.org/abs/2510.15020"
+                >The Coverage Principle: How Pre-Training Enables
+                Post-Training</a
+              >
+              <span class="paper-venue"
+                >ICLR 2026 <span class="paper-oral">Oral</span></span
+              >
+            </h3>
+
+            <p class="paper-authors">
+              Fan Chen, Audrey Huang, Noah Golowich,
+              <strong>Sadhika Malladi</strong>, Adam Block, Jordan T. Ash,
+              Akshay Krishnamurthy, Dylan J. Foster.
+            </p>
+          </article>
+          <article
+            class="paper-row"
+            id="efficiency-overtraining"
+            data-paper="overtraining"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2503.19206"
+                >Overtrained Language Models are Harder to Fine-Tune</a
+              >
+              <span class="paper-venue">ICML 2025</span>
+            </h3>
+
+            <p class="paper-authors">
+              Jacob Mitchell Springer, Sachin Goyal, Kaiyue Wen, Tanishq Kumar,
+              Xiang Yue, <strong>Sadhika Malladi</strong>, Graham Neubig, Aditi
+              Raghunathan.
+            </p>
+          </article>
+          <article
+            class="paper-row"
+            id="efficiency-transfer"
+            data-paper="transfer"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2010.03648"
+                >A Mathematical Exploration of Why Language Models Help Solve
+                Downstream Tasks</a
+              >
+              <span class="paper-venue">ICLR 2021</span>
+            </h3>
+
+            <p class="paper-authors">
+              Nikunj Saunshi, <strong>Sadhika Malladi</strong>, Sanjeev Arora.
+            </p>
+          </article>
+
+          <article
+            class="paper-row"
+            id="efficiency-distillation"
+            data-paper="distillation"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2410.05464"
+                >Progressive distillation induces an implicit curriculum</a
+              >
+              <span class="paper-venue">ICLR 2025</span>
+            </h3>
+
+            <p class="paper-authors">
+              Abhishek Panigrahi*, Bingbin Liu*,
+              <strong>Sadhika Malladi</strong>, Andrej Risteski, Surbhi Goel.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="research-topic" id="data" aria-labelledby="data-title">
+        <header class="topic-intro">
+          <h2 id="data-title">Data</h2>
+          <p>
+            How do we choose and organize the data that models learn from? We
+            develop methods for selecting examples, adapting data mixtures, and
+            providing learning cues across pre-training and post-training.
+          </p>
+        </header>
+        <div class="research-papers">
+          <article class="paper-row" id="data-graces" data-paper="graces">
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2511.02833"
+                >In Good GRACES: Principled Teacher Selection for Knowledge
+                Distillation</a
+              >
+              <span class="paper-venue">ICLR 2026</span>
+            </h3>
+            <p class="paper-authors">
+              Abhishek Panigrahi, Bingbin Liu, <strong>Sadhika Malladi</strong>,
+              Sham Kakade, Surbhi Goel.
+            </p>
+          </article>
+          <article class="paper-row" id="data-meco" data-paper="meco">
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2501.01956"
+                >Metadata Conditioning Accelerates Language Model
+                Pre-training</a
+              >
+              <span class="paper-venue">ICML 2025</span>
+            </h3>
+
+            <p class="paper-authors">
+              Tianyu Gao, Alexander Wettig, Luxi He, Yihe Dong,
+              <strong>Sadhika Malladi</strong>, Danqi Chen.
+            </p>
+          </article>
+          <article class="paper-row" id="data-ado" data-paper="ado">
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2410.11820v1"
+                >Adaptive Data Optimization: Dynamic Sample Selection with
+                Scaling Laws</a
+              >
+              <span class="paper-venue">ICLR 2025</span>
+            </h3>
+
+            <p class="paper-authors">
+              Yiding Jiang, Allan Zhou, Zhili Feng,
+              <strong>Sadhika Malladi</strong>, J. Zico Kolter.
+            </p>
+          </article>
+          <article class="paper-row" id="data-less" data-paper="less">
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2402.04333"
+                >LESS: Selecting Influential Data for Targeted Instruction
+                Tuning</a
+              >
+              <span class="paper-venue">ICML 2024</span>
+            </h3>
+
+            <p class="paper-authors">
+              Mengzhou Xia*, <strong>Sadhika Malladi</strong>*, Suchin
+              Gururangan, Sanjeev Arora, Danqi Chen.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section
+        class="research-topic"
+        id="alignment-safety"
+        aria-labelledby="safety-title"
+      >
+        <header class="topic-intro">
+          <h2 id="safety-title">Technical alignment &amp; safety</h2>
+          <p>
+            Do training objectives produce the behavior we intend? We study
+            failure modes in preference learning and develop theoretical and
+            empirical tools for evaluating alignment and machine unlearning.
+          </p>
+        </header>
+        <div class="research-papers">
+          <article
+            class="paper-row"
+            id="safety-displacement"
+            data-paper="displacement"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2410.08847"
+                >Unintentional Unalignment: Likelihood Displacement in Direct
+                Preference Optimization</a
+              >
+              <span class="paper-venue">ICLR 2025</span>
+            </h3>
+
+            <p class="paper-authors">
+              Noam Razin, <strong>Sadhika Malladi</strong>, Adithya Bhaskar,
+              Danqi Chen, Sanjeev Arora, Boris Hanin.
+            </p>
+          </article>
+          <article
+            class="paper-row"
+            id="safety-preferences"
+            data-paper="preferences"
+          >
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2405.19534"
+                >Preference Learning Algorithms Do Not Learn Preference
+                Rankings</a
+              >
+              <span class="paper-venue">NeurIPS 2024</span>
+            </h3>
+
+            <p class="paper-authors">
+              Angelica Chen, <strong>Sadhika Malladi</strong>, Lily H. Zhang,
+              Xinyi Chen, Qiuyi Zhang, Rajesh Ranganath, Kyunghyun Cho.
+            </p>
+          </article>
+          <article class="paper-row" id="safety-muse" data-paper="muse">
+            <h3 class="paper-title">
+              <a href="https://arxiv.org/abs/2407.06460"
+                >MUSE: Machine Unlearning Six-Way Evaluation for Language
+                Models</a
+              >
+              <span class="paper-venue">ICLR 2025</span>
+            </h3>
+
+            <p class="paper-authors">
+              Weijia Shi*, Jaechan Lee*, Yangsibo Huang*,
+              <strong>Sadhika Malladi</strong>, Jieyu Zhao, Ari Holtzman, Daogao
+              Liu, Luke Zettlemoyer, Noah A. Smith, Chiyuan Zhang.
+            </p>
+          </article>
+          <article
+            class="paper-row"
+            id="safety-unlearning"
+            data-paper="unlearning"
+          >
+            <h3 class="paper-title">
+              <a href="https://openreview.net/pdf?id=Bqvkul76J3"
+                >Provable unlearning in topic modeling and downstream tasks.</a
+              >
+              <span class="paper-venue">ICLR 2025</span>
+            </h3>
+
+            <p class="paper-authors">
+              Stanley Wei, <strong>Sadhika Malladi</strong>, Sanjeev Arora,
+              Amartya Sanyal.
+            </p>
+          </article>
+        </div>
+      </section>
+      <p class="research-archive-link">
+        <a class="text-link" href="../../papers/index.html"
+          >All publications →</a
+        >
+      </p>
+    </main>
+    <footer class="site-footer">
+      <span>Malladi Lab · UC San Diego</span>
+      <div class="footer-links">
+        <a href="../../index.html">Sadhika Malladi</a
+        ><a href="mailto:samalladi@ucsd.edu">Contact</a
+        ><a href="../../feed.xml">RSS</a>
+      </div>
+    </footer>
+  </body>
+</html>

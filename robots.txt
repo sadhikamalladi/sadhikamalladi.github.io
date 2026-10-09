@@ -1,1 +1,1 @@
-Sitemap: sadhikamalladi.github.io//https://sadhikamalladi.github.io/sitemap.xml
+Sitemap: https://sadhikamalladi.github.io/sitemap.xml

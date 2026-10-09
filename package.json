@@ -2,6 +2,8 @@
   "name": "sadhikamalladi.github.io",
   "private": true,
   "scripts": {
+    "dev": "python3 scripts/preview.py",
+    "check": "python3 scripts/check-site.py",
     "format": "prettier --write .",
     "lint": "prettier --check ."
   },

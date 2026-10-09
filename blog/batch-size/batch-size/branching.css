@@ -1,0 +1,31 @@
+.branch-trajectories{padding-top:28px;padding-bottom:32px;margin-bottom:30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.branch-chart-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:28px}
+.branch-chart-head h4{font-size:22px;font-weight:600;letter-spacing:-.035em;margin:0}
+.branch-chart-head .segmented{flex:none}
+.branch-axis-title{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:12px}
+.branch-axis-title strong{font-size:17px;font-weight:600}
+.branch-axis-title>span{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+#branch-trajectory-chart{display:block;width:100%;overflow:visible;touch-action:pan-y}
+#branch-trajectory-chart text{font-family:var(--sans);fill:var(--muted);font-variant-numeric:tabular-nums}
+#branch-trajectory-chart [role=button]{cursor:pointer;outline:none}
+#branch-trajectory-chart [role=button]:focus .branch-anchor-ring,#branch-trajectory-chart [role=button]:hover .branch-anchor-ring{stroke:var(--orange);stroke-width:2;fill:var(--soft-accent)}
+.branch-x-axis{font-size:20px;text-align:center;margin-top:13px}
+.branch-x-axis>span{color:var(--orange);margin-left:12px}
+.branch-legend{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;line-height:1.6;margin-top:24px}
+.branch-legend>span{display:inline-flex;align-items:center;gap:8px}
+.branch-line{position:relative;width:28px;height:2px;background:currentColor;flex:none}
+.branch-line:after{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;position:absolute;right:0;top:-2.5px}
+.branch-line.dashed{background:transparent;border-bottom:1.5px dashed currentColor;height:0}
+.branch-line.dashed:after{display:none}
+.branch-chart-caption{margin-top:17px;min-height:20px}
+.branch-curve-protocol{border:0;padding-top:0;margin-top:12px}
+.branch-curve-protocol summary{font-size:12px}
+.branch-curve-protocol a{border-bottom:1px solid var(--line);font-size:12px}
+
+.rule-candidates a.tag{display:inline-block;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line)}
+.rule-candidates a.tag:hover{color:var(--orange);text-decoration-color:currentColor}
+
+.branch-chart-head button[aria-pressed=true]{background:var(--surface);color:var(--ink);box-shadow:0 2px 8px #0000000b}
+.branch-legend>button{display:inline-flex;align-items:center;gap:8px;background:transparent;padding:6px 0;color:var(--muted);border-bottom:2px solid transparent;line-height:1.5;font-size:inherit}.branch-legend>button[aria-pressed=true]{color:var(--ink);border-bottom-color:currentColor;font-weight:600}.branch-legend>button:hover{color:var(--ink)}.branch-legend>button:disabled{opacity:.45;cursor:default}
+@media(max-width:760px){.branch-chart-head{align-items:flex-start;flex-direction:column;gap:16px;margin-bottom:23px}.branch-chart-head h4{font-size:20px}.branch-chart-head .segmented{align-self:stretch;display:flex}.branch-chart-head .segmented button{flex:1;font-size:12px;min-height:40px}.branch-axis-title strong{font-size:16px}.branch-axis-title>span{font-size:12px}.branch-x-axis{font-size:17px}.branch-legend{gap:8px 18px;font-size:12px;margin-top:20px}.branch-trajectories{padding-bottom:25px}.branch-chart-caption{font-size:12px;line-height:1.7}}
+@media(max-width:420px){.branch-axis-title{align-items:flex-start}.branch-axis-title>span{max-width:140px;text-align:right}}

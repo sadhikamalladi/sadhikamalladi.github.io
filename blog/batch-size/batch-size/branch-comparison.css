@@ -1,0 +1,364 @@
+/* The branch curves and their endpoint penalties form one comparison. */
+.branch-comparison-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2.5fr) minmax(280px, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+
+
+
+.branch-curve-main,
+.branch-penalty-side {
+  min-width: 0;
+}
+
+.branch-penalty-side {
+  border-left: 1px solid var(--line);
+  padding-left: 22px;
+}
+
+.branch-penalty-side .intervention-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+.branch-penalty-side .chart-top {
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.branch-penalty-side .chart-top > span:last-child {
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+.branch-penalty-side .penalty-bars {
+  --penalty-bar-height: 190px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  min-height: 0;
+  padding-top: 16px;
+}
+
+.branch-penalty-side .penalty-bars:has(.penalty-row:last-child:nth-child(2)) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.branch-penalty-side .penalty-bars::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--penalty-bar-height) + 16px);
+  border-top: 1px solid var(--line);
+}
+
+.branch-penalty-side .penalty-row {
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.branch-penalty-side .penalty-track {
+  order: 0;
+  display: flex;
+  align-items: end;
+  align-self: center;
+  height: var(--penalty-bar-height);
+  width: min(100%, 56px);
+  background: transparent;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+}
+
+.branch-penalty-side .penalty-fill {
+  width: 100%;
+  flex: none;
+  background: var(--coral);
+  border-radius: 3px 3px 0 0;
+  transition: height .35s ease;
+}
+
+.branch-penalty-side .penalty-fill.highlight {
+  background: var(--teal);
+}
+
+.branch-penalty-side .penalty-fill.random {
+  background: var(--muted);
+}
+
+.branch-penalty-side .penalty-label {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.branch-penalty-side .penalty-label > strong {
+  order: -1;
+  font-size: 17px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.branch-penalty-side .recovery-card {
+  margin: 0;
+  padding: 20px 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+
+.branch-penalty-side .recovery-card > .eyebrow {
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.branch-penalty-side .recovery-card > strong {
+  display: block;
+  font-size: 48px;
+  line-height: 1.15;
+  letter-spacing: -.04em;
+  margin: 4px 0 13px;
+}
+
+.branch-penalty-side .recovery-card > strong > span {
+  font-size: .55em;
+}
+
+.branch-penalty-side .recovery-card > strong.missing {
+  font-size: 30px;
+  line-height: 1.3;
+}
+
+.branch-penalty-side .recovery-card p {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.branch-penalty-side .micro-presets {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.branch-penalty-side .micro-presets button {
+  font-size: 16px;
+  line-height: 1.4;
+  padding: 5px 0;
+  min-height: 36px;
+  white-space: normal;
+  text-align: left;
+}
+
+@media (max-width: 1050px) {
+  .branch-comparison-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .branch-penalty-side {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 24px 0 0;
+  }
+
+  .branch-penalty-side .intervention-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .branch-penalty-side .recovery-card {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .branch-comparison-layout {
+    gap: 24px;
+  }
+
+  .branch-penalty-side .intervention-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .branch-penalty-side .penalty-bars {
+    --penalty-bar-height: 165px;
+    gap: 16px;
+  }
+
+  .branch-penalty-side .penalty-track {
+    width: min(100%, 62px);
+  }
+
+  .branch-penalty-side .recovery-card {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+  }
+
+  .branch-penalty-side .micro-presets {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .branch-penalty-side .penalty-fill {
+    transition: none;
+  }
+}
+
+/* Baselines and the rank sweep occupy two deliberate legend rows. */
+.branch-curve-main .branch-legend {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.branch-legend-group {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.branch-legend-baselines {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.branch-legend-ranks {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.branch-legend-group > :is(span, button) {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 9px;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.branch-legend-label {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.branch-legend-group .branch-line {
+  width: 24px;
+}
+
+.branch-legend-group > button[aria-pressed=true] {
+  background: var(--sunken);
+  border-color: var(--line);
+  color: var(--ink);
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.branch-legend-group > button:hover:not(:disabled) {
+  background: var(--sunken);
+  color: var(--ink);
+}
+
+.branch-legend-group > button:disabled {
+  opacity: .45;
+  cursor: default;
+}
+
+@media (min-width: 1051px) and (max-width: 1170px) {
+  .branch-legend-group > :is(span, button) {
+    padding: 6px;
+    gap: 6px;
+    font-size: 16px;
+  }
+
+  .branch-legend-group .branch-line {
+    width: 20px;
+  }
+}
+
+@media (max-width: 760px) {
+  .branch-curve-main .branch-legend {
+    gap: 10px;
+    font-size: 16px;
+  }
+
+  .branch-legend-baselines {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .branch-legend-baselines > span:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .branch-legend-ranks {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .branch-legend-group > :is(span, button) {
+    padding: 6px;
+    gap: 5px;
+    font-size: 16px;
+    letter-spacing: -.01em;
+  }
+
+  .branch-legend-group .branch-line {
+    width: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .branch-legend-ranks button {
+    padding-inline: 2px;
+    column-gap: 5px;
+  }
+
+  .branch-legend-ranks .branch-line {
+    width: 18px;
+  }
+
+  .branch-legend-ranks button:not(:disabled) .branch-legend-label {
+    white-space: nowrap;
+  }
+}

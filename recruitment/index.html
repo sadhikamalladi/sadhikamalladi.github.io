@@ -1,80 +1,139 @@
-<html>
-<head>
-    <title>Sadhika Malladi</title>
-    <meta charset='UTF-8'>
-    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Joining the group · Malladi Lab</title>
+    <meta
+      name="description"
+      content="Research and mentorship philosophy, and guidance for prospective students and collaborators."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link
+      rel="canonical"
+      href="https://sadhikamalladi.github.io/recruitment/"
+    />
+    <link rel="icon" href="../image/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../css/site.css" />
+    <link
+      rel="alternate"
+      type="application/atom+xml"
+      title="Malladi Lab — Writing"
+      href="../feed.xml"
+    />
+  </head>
+  <body class="site-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="site-brand" href="../index.html" aria-label="Malladi Lab home"
+        >Malladi Lab<span class="site-affiliation">UC San Diego</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="../lab/research/index.html">Research</a>
+        <a href="../blog/index.html">Writing</a>
+        <a href="../lab/about/index.html" aria-current="page">About</a>
+      </nav>
+    </header>
+    <main id="main" class="site-container">
+      <div class="prose-page">
+        <header class="page-heading">
+          <h1>Student recruitment</h1>
+        </header>
+        <h2 id="research-philosophy">Research Philosophy</h2>
+        <p>
+          <em
+            >Nearly every project produces both rigorous theoretical insights
+            and practical algorithms that are immediately useful to
+            practitioners</em
+          >
+          (and accordingly, often adopted across industry). My research bridges
+          deep learning theory and practice by combining (1) new mathematical
+          tools that move beyond the restrictive assumptions typical in
+          traditional deep learning theory with (2) rigorous experiments to
+          verify the applicability of the theory to real-world settings. This
+          two-pronged approach advances fundamental understanding of current
+          models while identifying lasting insights and algorithms that extend
+          beyond specific settings and models. This is especially useful as the
+          field evolves rapidly. Here are some examples:
+        </p>
+        <ol>
+          <li>
+            Using optimization theory to select hyperparameters for large-scale
+            training runs (<a
+              href="../blog/2024/01/22/SDEs-ScalingRules/index.html"
+              >blog</a
+            >). Although this research was developed between 2020 and 2022, it
+            remains useful and applicable to training large-scale models today
+            and is widely adopted across industry.
+          </li>
+          <li>
+            Current ways of making models output less toxic content fail (<a
+              href="https://arxiv.org/abs/2405.19534"
+              >paper</a
+            >) actually make them output more undesirable text (<a
+              href="https://arxiv.org/abs/2410.08847"
+              >paper</a
+            >). Theory lets us characterize how and why this happens and
+            mitigate it via efficient and practical data filtering strategies.
+          </li>
+          <li>
+            Applying gradient-free optimization techniques to fine-tune large
+            language models without the need for backpropagation, thereby
+            substantially reducing memory consumption (<a
+              href="https://arxiv.org/abs/2305.17333"
+              >paper</a
+            >).
+          </li>
+        </ol>
 
-    <meta name='description' content='Sadhika Malladi is a PhD candidate at Princeton.'>
-    <!-- A decent browser will parse this fine:
-         https://webmasters.stackexchange.com/questions/92744. -->
-    <meta name='keywords' content='
-        machine learning,
-        statistical machine learning,
-        statistics,
-        computational statistics,
-        linear algebra,
-        statistical software,
-        deep learning,
-        computer science
-    '>
-    <meta name='author' content='Sadhika Malladi'>
+        <p>
+          Each of these works began with novel theoretical analyses and
+          concluded with practical insights and algorithms that would have
+          otherwise been hard to identify. I am interested in applying this
+          philosophy to a wide variety of topics within machine learning!
+        </p>
 
-    <link rel='shortcut icon' href='/favicon.png?v=e' />
-    <link href='https://sadhikamalladi.github.io/css/main.css' rel='stylesheet'/>
+        <h2 id="mentorship-philosophy">Mentorship Philosophy</h2>
+        <p>
+          I am deeply invested in your development as a researcher and
+          communicator, and I am formally trained in state-of-the-art
+          pedagogical practices. I will work closely with you to identify topics
+          that match your interests, help you get "unstuck" when you need it,
+          and give you room to explore. Beyond research, I will facilitate
+          opportunities for you to collaborate and disseminate your work
+          externally across academia and industry. I am knowledgeable about and
+          sympathetic to the challenges international students face, and I will
+          do my best to support you. If you have specific concerns, I would be
+          happy to chat about them.
+        </p>
 
-    <script type='text/x-mathjax-config'>
-MathJax.Hub.Config({
-  jax: ['input/TeX', 'output/HTML-CSS'],
-  tex2jax: {
-    inlineMath: [ ['$', '$'] ],
-    displayMath: [ ['$$', '$$']],
-    processEscapes: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-    extensions: ['color.js']
-  },
-  messageStyle: 'none',
-  'HTML-CSS': { preferredFont: 'TeX', availableFonts: ['STIX','TeX'] }
-});
-</script>
+        <h2 id="joining-the-group">Joining the Group</h2>
+        <p>
+          If you are applying to PhD programs, please apply to the CSE
+          department at UCSD and mention me in your application. Feel free to
+          send me an email with "[PhD Interest]" in the subject title if you
+          want to specifically highlight your application. I expect students to
+          have both mathematical maturity and programming familiarity, though
+          many ML-specific theoretical and empirical skills can be picked up
+          over the course of research. If you are not sure if you will be a good
+          fit, please apply anyways or reach out to chat.
+        </p>
 
-<script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML' type='text/javascript'></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-</head>
-<body>
-  <div class='nav'>
-    <ul class='wrap'>
-        <li><a href='https://sadhikamalladi.github.io/index.html'>Home</a></li>
-	<li><a href='https://sadhikamalladi.github.io/papers/index.html'>Papers</a></li>
-	<li><a href='https://sadhikamalladi.github.io/service/index.html'>Teaching and Service</a></li>
-	    <li><a href='https://sadhikamalladi.github.io/blog/index.html'>Research Blog</a></li>
-        	<li><a href='https://sadhikamalladi.github.io/recruitment/index.html'>Student Recruitment</a></li>
-    </ul>
-</div>
-
-
-  <div id='papers'>
-    <h1>Student Recruitment</h1>
-    <h2>Research Philosophy</h2>
-    <p>Theory is essential for building models that are safe, performant, and efficient. My research has demonstrated in several settings that post-hoc fixes to make models helpful and aligned are not effective. Instead, we need principled training procedures that deliver these properties reliably (ideally, provably) and without a huge <a href="https://www.alignmentforum.org/w/alignment-tax">"alignment tax."</a> This requires understanding how technical training decisions connect to real-world behaviors and outcomes.</p>
-    
-    <p>
-      To achieve this, <em>nearly every project produces both rigorous theoretical insights and practical algorithms that are immediately useful to practitioners</em> (and accordingly, often adopted across industry). My research bridges deep learning theory and practice by combining (1) new mathematical tools that move beyond the restrictive assumptions typical in traditional deep learning theory with (2) rigorous experiments to verify the applicability of the theory to real-world settings. This two-pronged approach advances fundamental understanding of current models while identifying lasting insights and algorithms that extend beyond specific settings and models. This is especially useful as the field evolves rapidly. Here are some examples:
-    </p>
-    <ol>
-      <li>Using optimization theory to select hyperparameters for large-scale training runs (<a href="https://sadhikamalladi.github.io//blog/2024/01/22/SDEs-ScalingRules/">blog</a>). Although this research was developed between 2020 and 2022, it remains useful and applicable to training large-scale models today and is widely adopted across industry.</li>
-      <li>Current ways of making models output less toxic content fail (<a href="https://arxiv.org/abs/2405.19534">paper</a>) actually make them output more undesirable text (<a href="https://arxiv.org/abs/2410.08847">paper</a>). Theory lets us characterize how and why this happens and mitigate it via efficient and practical data filtering strategies.</li>
-      <li>Applying gradient-free optimization techniques to fine-tune large language models without the need for backpropagation, thereby substantially reducing memory consumption (<a href="https://arxiv.org/abs/2305.17333">paper</a>).</li>
-    </ol>
-
-    <p>Each of these works began with novel theoretical analyses and concluded with practical insights and algorithms that would have otherwise been hard to identify. I am interested in applying this philosophy to a wide variety of topics within machine learning!</p>
-
-    <h2>Mentorship Philosophy</h2>
-    <p>I am deeply invested in your development as a researcher and communicator, and I am formally trained in state-of-the-art pedagogical practices. I will work closely with you to identify topics that match your interests, help you get "unstuck" when you need it, and give you room to explore. Beyond research, I will facilitate opportunities for you to collaborate and disseminate your work externally across academia and industry. I am knowledgeable about and sympathetic to the challenges international students face, and I will do my best to support you. If you have specific concerns, I would be happy to chat about them.</p>
-  
-    <h2>Joining the Group</h2>
-    <p>If you are applying to PhD programs, please apply to the CSE department at UCSD and mention me in your application. Feel free to send me an email with "[PhD Interest]" in the subject title if you want to specifically highlight your application. I expect students to have both mathematical maturity and programming familiarity, though many ML-specific theoretical and empirical skills can be picked up over the course of research. If you are not sure if you will be a good fit, please apply anyways or reach out to chat.</p>
-
-    <p>If you are interested in collaborating or want to chat about research ideas, please send me an email any time with "[Collaboration Interest]" in the subject line. I may not have the bandwidth to reply to all inquiries.</p>
-  </div>
-</body>
+        <p>
+          If you are interested in collaborating or want to chat about research
+          ideas, please send me an email any time with "[Collaboration
+          Interest]" in the subject line. I may not have the bandwidth to reply
+          to all inquiries.
+        </p>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <span>Malladi Lab · UC San Diego</span>
+      <div class="footer-links">
+        <a href="../index.html">Sadhika Malladi</a
+        ><a href="mailto:samalladi@ucsd.edu">Contact</a
+        ><a href="../feed.xml">RSS</a>
+      </div>
+    </footer>
+  </body>
 </html>

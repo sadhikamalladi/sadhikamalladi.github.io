@@ -1,0 +1,98 @@
+/* A single exponent control replaces the duplicated exponent rail. */
+.directional-local-panel .scaling-controls {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: start;
+  gap: 24px 32px;
+}
+
+.directional-local-panel .scaling-controls > .exponent-control {
+  display: grid;
+  grid-column: 1;
+  grid-row: 1;
+  gap: 12px;
+  min-width: 0;
+}
+
+.directional-local-panel .exponent-control > .control {
+  margin: 0;
+}
+
+.directional-local-panel .scaling-controls .exponent-control #scale-presets {
+  display: flex;
+  grid-column: auto;
+  grid-row: auto;
+  justify-self: start;
+  align-self: start;
+  margin: 0;
+  max-width: 100%;
+}
+
+.directional-local-panel .exponent-control #scale-presets button {
+  min-height: 40px;
+  padding: 9px 14px;
+  font-size: var(--artifact-font-size);
+}
+
+.directional-local-panel .scaling-controls > .control:has(#scale-batch) {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+}
+
+.directional-local-panel .scaling-controls .movement-readout {
+  grid-column: 3;
+  grid-row: 1;
+  gap: 20px;
+}
+
+.directional-local-panel .scaling-controls .control label {
+  font-size: var(--artifact-font-size);
+  margin-bottom: 12px;
+}
+
+@media (max-width: 1000px) {
+  .directional-local-panel .scaling-controls {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .directional-local-panel .scaling-controls .movement-readout {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: start;
+    grid-template-columns: max-content max-content;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 760px) {
+  .directional-local-panel .scaling-controls {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 24px;
+  }
+
+  .directional-local-panel .scaling-controls > .exponent-control {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .directional-local-panel .scaling-controls > .control:has(#scale-batch) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .directional-local-panel .scaling-controls .movement-readout {
+    grid-column: 1;
+    grid-row: 3;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .directional-local-panel .exponent-control #scale-presets {
+    width: 100%;
+  }
+
+  .directional-local-panel .exponent-control #scale-presets button {
+    flex: 1;
+  }
+}
