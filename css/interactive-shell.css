@@ -24,21 +24,6 @@
 .article-layout {
   margin-top: 22px;
 }
-.article-credit {
-  margin-top: 28px;
-  font-size: 13px;
-  color: var(--site-muted);
-  line-height: 1.6;
-}
-.article-credit p {
-  margin: 0 0 10px;
-}
-.article-credit a {
-  color: var(--site-link);
-}
-.site-footer {
-  padding: 24px 0 30px !important;
-}
 @media (max-width: 680px) {
   .site-header nav {
     margin-left: 0;
